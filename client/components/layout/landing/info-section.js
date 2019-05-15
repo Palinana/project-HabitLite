@@ -10,12 +10,12 @@ const InfoSection = () => {
             Stay productive,<br /> wherever you are
           </h1>
           <p>
-            Never let location be an issue when accessing your files. Fylo has
-            you covered for all of your file storage needs.
+            Never let location be an issue when accessing your data. HabitLite
+            has you covered for all of your habits progress.
           </p>
           <p>
-            Securely share files and folders with friends, family and colleagues
-            for live collaboration. No email attachments required!
+            Securely share your progress with friends, family and colleagues for
+            live collaboration and competitions.
           </p>
           <Link to="/" className="info-link__box">
             <div className="info-link__text">See how HabitLite works</div>{' '}

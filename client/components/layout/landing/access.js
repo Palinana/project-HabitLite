@@ -11,7 +11,7 @@ const Access = () => {
         help you.
       </p>
       <button className="access__button">
-        <Link to="/sign-in">Get Started For Free</Link>
+        <Link to="/signup">Get Started For Free</Link>
       </button>
     </div>
   )
