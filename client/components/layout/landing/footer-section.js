@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -22,7 +21,7 @@ const Footer = () => {
           </span>
           <span>
             <img src="./images/icon-email.svg" alt="email" />
-            <a href="#">contact@habitlite.com</a>
+            <div>contact@habitlite.com</div>
           </span>
         </section>
 
