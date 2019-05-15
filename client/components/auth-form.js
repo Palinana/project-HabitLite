@@ -14,7 +14,10 @@ const AuthForm = props => {
         <div className="col-lg-8 d-none d-lg-block">
           <div className="d-flex">
             <div className="p-4 align-self-start">
-              <img src="../loginImage.png" className="home-section__image" />
+              <img
+                src="../images/loginImage.png"
+                className="home-section__image"
+              />
             </div>
           </div>
         </div>
