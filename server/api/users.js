@@ -12,3 +12,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      if (user === null) {
+        const error = new Error('User not found!')
+        error.status = 404
+        throw error
+      }
+      res.status(200).send(user)
+    })
+    .catch(next)
+})

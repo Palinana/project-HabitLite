@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import {auth} from '../store'
 import Auth from './auth'
 import {Icon} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
 import Navigation from './layout/landing/navigation'
 
 const AuthForm = props => {

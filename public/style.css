@@ -19,6 +19,7 @@ body {
   margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  /* background: #FAFAFA; */
 }
 
 h1,
@@ -223,10 +224,16 @@ i.icon.exclamation.circle {
 }
 
 /* === LANDING PAGE === */
+
+.navbar {
+  /* background: #ffffff; */
+  /* box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
+}
+
 .header__container {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
 }
 
 nav a {
@@ -593,8 +600,69 @@ nav a {
   width: auto;
 }
 
+/* === QUIZ PAGE === */
+
+.form-container {
+  margin: 1rem 20rem;
+  margin-bottom: 5rem;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 2rem 5rem 3rem;
+}
+
+.top-margin {
+  margin-top: 8rem;
+}
+
+.form__title {
+  text-align: center;
+  margin: 8rem 20rem 5rem;
+}
+
+.custom-select {
+  padding: 0.8rem 3rem;
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-group__select {
+  width: 100%;
+}
+
+.form-group__label {
+  padding: 1rem 3rem;
+}
+
+.form__box {
+  display: block !important;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.item {
+  /* margin: 0 5rem; */
+}
+
+.form__button {
+  padding: 1.3rem 2.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+  border-radius: 3rem;
+  width: 25%;
+  /* background-color: #dc5e85; */
+  background-image: linear-gradient(to right, #dfa4a7, #fde9c8);
+  color: #ffffff;
+  text-shadow: none;
+  border: none;
+}
+
+/* =================================================== */
+
 /* Small devices (landscape phones, 576px and up) - when screen will get to this point, use styles: */
 @media (max-width: 576px) {
+  /* LANDING PAGE */
+
   .intro-sect__container {
     display: flex;
     flex-direction: column;
@@ -720,9 +788,15 @@ nav a {
   .circle {
     margin: 1rem 2rem;
   }
+
+  /* QUIZ PAGE */
+  .form-container {
+    margin: 0;
+  }
 }
 
 @media (max-width: 768px) and (min-width: 576px) {
+  /* LANDING PAGE */
   .intro-sect__container {
     display: flex;
     flex-direction: column;
@@ -799,10 +873,16 @@ nav a {
   .links__main {
     margin-left: 5rem;
   }
+
+  /* QUIZ PAGE */
+  .form-container {
+    margin: 0;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) and (min-width: 768px) {
+  /* LANDING PAGE */
   .intro-signin__button {
     width: 40%;
   }
@@ -814,11 +894,22 @@ nav a {
   .footer-sect__location figure {
     margin-left: 0;
   }
+
+  /* QUIZ PAGE */
+  .form-container {
+    margin: 0;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (max-width: 1200px) {
+  /* LANDING PAGE */
   .intro-signin__button {
     width: 40%;
+  }
+
+  /* QUIZ PAGE */
+  .form-container {
+    margin: 0;
   }
 }
