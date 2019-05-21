@@ -12,4 +12,6 @@ export {default as Reviews} from './layout/landing/reviews'
 export {default as Access} from './layout/landing/access'
 export {default as FooterSection} from './layout/landing/footer-section'
 export {default as Navigation} from './layout/landing/navigation'
+
 export {default as UserPanel} from './layout/summary/user-panel'
+export {default as UserSingleHabit} from './layout/summary/user-singleHabit'

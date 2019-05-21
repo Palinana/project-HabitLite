@@ -3,6 +3,17 @@ Main colors:
 
 Background: #F9F8FE
 Secondary color: #dc5e85
+Grey light: #9a9898
+Grey dark: #5f5d5d
+dark purple: #8068b5
+
+
+
+grey dark: #585D5F;
+grey light: #a9acb1;
+
+
+
 
 
 
@@ -19,7 +30,7 @@ body {
   margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  /* background: #FAFAFA; */
+  background: #f8fafb;
 }
 
 h1,
@@ -682,9 +693,12 @@ nav a {
   align-self: stretch;
   width: 90%;
   margin: 0 auto;
-  background: #fafafa;
+  /* background: #ffffff;
   padding: 2rem;
-  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
+  background: #ffffff;
+  padding: 2rem;
+  border: 1px solid #e6eaee;
 }
 
 .user-panel__left {
@@ -719,12 +733,64 @@ nav a {
 .user-panel__item-top {
   font-weight: 300;
   margin-bottom: 8px;
+  color: #a9acb1;
 }
 
 .user-panel__item-bottom {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #585d5f;
 }
+
+.user-panel__user-name {
+  color: #585d5f;
+}
+
+.user-summary_button-box {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-left: 0;
+}
+
+.user-summary_button-summary {
+  padding: 1.3rem 2.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+  border-radius: 3rem;
+  width: 15%;
+  background-image: linear-gradient(to right, #dfa4a7, #fde9c8);
+  color: #ffffff;
+  text-shadow: none;
+  border: none;
+}
+
+.user-summary__cards-box {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* .user-summary__card:nth-child(3n+3) {
+  padding-right: 0;
+}
+
+.user-summary__card:first-child, .user-summary__card:nth-child(1n+2) { 
+  padding-left: 0;
+} */
+
+/* .user-summary__card:nth-child(3n+2) {
+  padding: 15px;
+
+} */
 
 /*======================
 
@@ -878,6 +944,15 @@ nav a {
   .user-panel__item {
     padding: 0 2rem;
   }
+
+  /* USER SUMMARY */
+  .user-summary_button-summary {
+    width: 35%;
+  }
+
+  .user-panel__item {
+    padding: 0 1rem;
+  }
 }
 
 @media (max-width: 768px) and (min-width: 576px) {
@@ -969,6 +1044,13 @@ nav a {
     display: flex;
     flex-direction: column;
   }
+
+  .user-panel__item {
+    padding: 0 1rem;
+  }
+  .user-summary_button-summary {
+    width: 35%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -989,6 +1071,18 @@ nav a {
   /* QUIZ PAGE */
   .form-container {
     margin: 0;
+  }
+
+  /* USER SUMMARY */
+  .user-summary_button-summary {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+  /* USER SUMMARY */
+  .user-summary_button-summary {
+    width: 20%;
   }
 }
 
