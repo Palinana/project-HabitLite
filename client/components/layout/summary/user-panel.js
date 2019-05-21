@@ -22,19 +22,19 @@ const UserPanel = props => {
         <div className="user-panel__right">
           <div className="user-panel__item">
             <div className="user-panel__item-top">Level</div>
-            <div className="user-panel__item-bottom">4</div>
+            <div className="user-panel__item-bottom">3</div>
           </div>
           <div className="user-panel__item">
             <div className="user-panel__item-top">Lives</div>
-            <div className="user-panel__item-bottom">4</div>
+            <div className="user-panel__item-bottom">2</div>
           </div>
           <div className="user-panel__item">
             <div className="user-panel__item-top">HP</div>
-            <div className="user-panel__item-bottom">4</div>
+            <div className="user-panel__item-bottom">400</div>
           </div>
           <div className="user-panel__item">
             <div className="user-panel__item-top">XP</div>
-            <div className="user-panel__item-bottom">4</div>
+            <div className="user-panel__item-bottom">30</div>
           </div>
         </div>
       </div>
