@@ -1,28 +1,28 @@
 const User = require('./user')
+const Goal = require('./goal')
 const Habit = require('./habit')
-const Category = require('./category')
-const UserCategory = require('./userCategory')
-const Personality = require('./personality')
 const UserHabit = require('./userHabit')
+const Personality = require('./personality')
+const UserGoal = require('./userGoal')
 
-Category.hasMany(Habit)
-Habit.belongsTo(Category)
-UserCategory.belongsTo(User)
-UserCategory.belongsTo(Category)
-User.hasMany(UserCategory)
-Category.hasMany(UserCategory)
+Habit.hasMany(Goal)
+Goal.belongsTo(Habit)
 UserHabit.belongsTo(User)
 UserHabit.belongsTo(Habit)
 User.hasMany(UserHabit)
 Habit.hasMany(UserHabit)
+UserGoal.belongsTo(User)
+UserGoal.belongsTo(Goal)
+User.hasMany(UserGoal)
+Goal.hasMany(UserGoal)
 Personality.belongsTo(User)
 User.hasOne(Personality)
 
 module.exports = {
   User,
-  Category,
   Habit,
-  UserCategory,
+  Goal,
+  UserHabit,
   Personality,
-  UserHabit
+  UserGoal
 }
