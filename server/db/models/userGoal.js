@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const UserCategory = db.define('userCategory', {
+const UserGoal = db.define('userGoal', {
   XP: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -17,7 +17,11 @@ const UserCategory = db.define('userCategory', {
       notEmpty: true,
       min: 0
     }
+  },
+  complete: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
-module.exports = UserCategory
+module.exports = UserGoal
