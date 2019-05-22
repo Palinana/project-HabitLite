@@ -9,10 +9,13 @@ dark purple: #8068b5
 
 
 
-grey dark: #585D5F;
-grey light: #a9acb1;
+grey dark: #070439;
+grey light: #84828E;
 
-
+Progress colors:
+#696ba0; 
+#908ece;
+#cac9f3;
 
 
 
@@ -321,6 +324,7 @@ nav a {
 .intro-img__box {
   flex-basis: 45%;
   order: 2;
+  margin: 0 1.5em;
 }
 
 .intro-img__box img {
@@ -331,6 +335,7 @@ nav a {
 .intro-content__box {
   flex-basis: 45%;
   order: 1;
+  margin: 0 1.5em;
 }
 
 .intro-signin__button {
@@ -382,6 +387,7 @@ nav a {
 .info-img__box {
   order: 1;
   flex-basis: 50%;
+  margin: 0 1.5em;
 }
 
 .info-img__box img {
@@ -395,6 +401,7 @@ nav a {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 0 1.5em;
 }
 
 .info-content__box a,
@@ -473,6 +480,8 @@ nav a {
 
 .review-sect__quotes {
   margin: 1% 0 10%;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
   position: relative;
 }
 
@@ -687,12 +696,13 @@ nav a {
       USER SUMMARY 
 =======================*/
 
-.user-panel__container {
+.user-panel__box {
   display: flex;
   align-items: center;
   align-self: stretch;
-  width: 90%;
-  margin: 0 auto;
+  margin: 0 1.5em;
+  /* width: 90%;
+  margin: 0 auto; */
   /* background: #ffffff;
   padding: 2rem;
   box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
@@ -733,25 +743,23 @@ nav a {
 .user-panel__item-top {
   font-weight: 300;
   margin-bottom: 8px;
-  color: #a9acb1;
+  color: #84828e;
 }
 
 .user-panel__item-bottom {
   font-size: 2rem;
   font-weight: 500;
-  color: #585d5f;
+  color: #070439;
 }
 
 .user-panel__user-name {
-  color: #585d5f;
+  color: #070439;
 }
 
 .user-summary_button-box {
   display: flex;
   align-items: center;
   align-self: stretch;
-  width: 90%;
-  margin: 0 auto;
   padding: 2rem;
   padding-left: 0;
 }
@@ -774,14 +782,36 @@ nav a {
 
 .user-summary {
   display: block !important;
+  margin: 0 1.5em;
+}
+
+.user-summary__top {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-summary__title {
+  font-size: 1.7rem;
+}
+
+.user-summary__close {
+  margin-left: auto;
+}
+
+i.icon.close {
+  color: darkgrey;
 }
 
 .user-summary__data {
   flex-direction: column;
   background: #ffffff;
-  padding: 1.5rem;
-  margin-top: 1.5rem;
+  padding: 2rem;
+  margin: 1.5rem 1.5em 0;
   border: 1px solid #e6eaee;
+}
+
+.user-summary__analysis {
+  color: #84828e;
 }
 
 .user-summary-hide {
@@ -811,30 +841,28 @@ nav a {
   display: flex;
   align-items: center;
   align-self: stretch;
-  width: 90%;
-  margin: 0 auto;
+  margin: 0 0.5em;
 }
 
 .user-summary__card {
   padding: 15px;
 }
 
-/* .user-summary__card:nth-child(3n+3) {
-  padding-right: 0;
+.user-summary__card-title {
+  font-size: 1.7rem;
 }
 
-.user-summary__card:first-child, .user-summary__card:nth-child(1n+2) { 
-  padding-left: 0;
-} */
-
-/* .user-summary__card:nth-child(3n+2) {
-  padding: 15px;
-
-} */
+.card-body {
+  padding: 2rem;
+}
 
 /*======================
-
+        PROGRESS
 =======================*/
+.user-summary__card-progress {
+  width: 80%;
+  margin: 0 auto;
+}
 
 /* =================================================== */
 /* =================================================== */
@@ -860,11 +888,13 @@ nav a {
 
   .intro-content__box {
     text-align: center;
+    margin: 0;
   }
 
   .intro-img__box {
     padding: 1.5rem;
     order: 1;
+    margin: 0;
   }
   .intro-img__box img {
     width: 100%;
@@ -890,10 +920,12 @@ nav a {
 
   .info-img__box {
     width: 100%;
+    margin: 0;
   }
 
   .info-content__box {
     text-align: center;
+    margin: 0;
   }
 
   .info-link__box {
@@ -1025,11 +1057,14 @@ nav a {
 
   .intro-content__box {
     text-align: center;
+    margin: 0;
+    margin-top: 2rem;
   }
 
   .intro-img__box {
     padding: 1.5rem;
     order: 1;
+    margin: 0;
   }
 
   .intro-img__box img {
@@ -1060,6 +1095,7 @@ nav a {
 
   .info-img__box {
     order: 1;
+    margin: 0;
   }
 
   .info-img__box {
@@ -1068,6 +1104,7 @@ nav a {
 
   .info-content__box {
     text-align: center;
+    margin: 0;
   }
 
   .info-link__box {
@@ -1081,6 +1118,11 @@ nav a {
 
   .access__button {
     width: 40%;
+  }
+
+  .review-sect__quotes {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .footer-sect__logo {
@@ -1117,8 +1159,29 @@ nav a {
 /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) and (min-width: 768px) {
   /* LANDING PAGE */
+  .intro-content__box {
+    margin: 0;
+  }
+
+  .intro-img__box {
+    margin: 0;
+  }
+
+  .info-content__box {
+    margin: 0;
+  }
+
+  .info-img__box {
+    margin: 0;
+  }
+
   .intro-signin__button {
     width: 40%;
+  }
+
+  .review-sect__quotes {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .footer-sect__logo {
