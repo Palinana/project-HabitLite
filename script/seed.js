@@ -1,5 +1,12 @@
 const db = require('../server/db')
-const {User, Habit, Goal, UserHabit, UserGoal} = require('../server/db/models')
+const {
+  User,
+  Habit,
+  Goal,
+  UserHabit,
+  UserGoal,
+  Personality
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -208,6 +215,17 @@ async function seed() {
     })
   ])
 
+  const personality = await Promise.all([
+    Personality.create({
+      userId: 6,
+      insight:
+        'I rather Run. When I skip a workout is usually because I’m feeling under the weather. I feel relaxed when Have a dance party with my kids. During the weekend I look forward to Finally getting to sleep in and not follow a strict schedule. Best part of my workout is Breaking the cycle of sitting all day. I stay motivated during a project by The thought of how great it will feel when I’m done. The best part about eating out is Tasting dishes, I could never make for myself. My mornings look like Setting my alarm early so I can feel awake by the tie I actually have to be productive. Parties are They’re a fun way to meet interesting people. My biggest strength in a job interview is being Dedicated. If someone offered me last minute tickets to a play I would go if the plot sounds interesting',
+      habitGroup: 'DC',
+      analysis:
+        'You are skeptical, somewhat coarse and imperturbable.You are trusting of others: you believe the best in others and trust people easily. You are hedonistic: you feel your desires strongly and are easily tempted by them. And you are unstructured: you do not make a lot of time for organization in your daily life.Your choices are driven by a desire for prestige.You consider helping others to guide a large part of what you do: you think it is important to take care of the people around you. You are relatively unconcerned with tradition: you care more about making your own path than following what others have done.'
+    })
+  ])
+
   const userHabits = await Promise.all([
     UserHabit.create({userId: 4, habitId: 1, XP: 5, HP: 10}),
     UserHabit.create({userId: 1, habitId: 1, XP: 20, HP: 20}),
@@ -215,7 +233,9 @@ async function seed() {
     UserHabit.create({userId: 2, habitId: 1, XP: 0, HP: 35}),
     UserHabit.create({userId: 3, habitId: 1, XP: 0, HP: 45}),
     UserHabit.create({userId: 5, habitId: 1, XP: 0, HP: 55}),
-    UserHabit.create({userId: 6, habitId: 1, XP: 0, HP: 65})
+    UserHabit.create({userId: 6, habitId: 1, XP: 5, HP: 65}),
+    UserHabit.create({userId: 6, habitId: 2, XP: 2, HP: 65}),
+    UserHabit.create({userId: 6, habitId: 3, XP: 15, HP: 65})
   ])
 
   const userGoal = await Promise.all([
@@ -285,6 +305,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${habits.length} habits`)
   console.log(`seeded ${goals.length} goals`)
+  console.log(`seeded ${personality.length} personality`)
   console.log(`seeded ${userHabits.length} userHabits`)
   console.log(`seeded ${userGoal.length} UserGoals`)
   console.log(`seeded successfully`)

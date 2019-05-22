@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Icon} from 'semantic-ui-react'
 
 import UserPanel from '../components/layout/summary/user-panel'
 import UserSingleHabit from '../components/layout/summary/user-singleHabit'
@@ -24,13 +25,13 @@ class UserHome extends Component {
 
   render() {
     const personality = this.props.personality
-    const habits = this.props.habits.map(hab => ({...hab.habit}))
+    const habits = this.props.habits
 
     return (
       <div className="container">
         <UserPanel />
 
-        <div className={this.state.fade ? 'fade-button' : 'row user-summary'}>
+        <div className={this.state.fade ? 'fade-button' : 'user-summary'}>
           <div className="user-summary_button-box">
             <button
               onClick={() => this.setState({fade: true})}
@@ -47,22 +48,30 @@ class UserHome extends Component {
           <div
             className={this.state.fade ? 'user-summary__data' : 'fade-button'}
           >
-            <h2>Your summary</h2>
-            <p>{personality[0] ? personality[0].analysis : null}</p>
-            <button onClick={() => this.setState({fade: false})}>Close</button>
+            <div className="user-summary__top">
+              <h2 className="user-summary__title">Your summary</h2>
+              <div className="user-summary__close">
+                <Icon
+                  name="close"
+                  onClick={() => this.setState({fade: false})}
+                  className="user-summary__close-button"
+                />
+              </div>
+            </div>
+            <p className="user-summary__analysis">
+              {personality[0] ? personality[0].analysis : null}
+            </p>
           </div>
         </div>
 
-        <div className="row">
-          <div className="user-summary__cards-box">
-            {habits ? (
-              habits.map(habit => (
-                <UserSingleHabit habit={habit} key={habit.id} />
-              ))
-            ) : (
-              <div>You don't have any habits</div>
-            )}
-          </div>
+        <div className="user-summary__cards-box">
+          {habits ? (
+            habits.map(habit => (
+              <UserSingleHabit habit={habit} key={habit.id} />
+            ))
+          ) : (
+            <div>You don't have any habits</div>
+          )}
         </div>
       </div>
     )
