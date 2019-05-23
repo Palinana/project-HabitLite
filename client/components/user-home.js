@@ -29,38 +29,40 @@ class UserHome extends Component {
 
     return (
       <div className="container">
-        <UserPanel />
-
-        <div className={this.state.fade ? 'fade-button' : 'user-summary'}>
-          <div className="user-summary_button-box">
-            <button
-              onClick={() => this.setState({fade: true})}
-              className="user-summary_button-summary"
-            >
-              See summary
-            </button>
-          </div>
+        <div className="block">
+          <UserPanel />
         </div>
 
-        <div
-          className={this.state.fade ? 'fade-data' : 'row user-summary-hide'}
-        >
-          <div
-            className={this.state.fade ? 'user-summary__data' : 'fade-button'}
-          >
-            <div className="user-summary__top">
-              <h2 className="user-summary__title">Your summary</h2>
-              <div className="user-summary__close">
-                <Icon
-                  name="close"
-                  onClick={() => this.setState({fade: false})}
-                  className="user-summary__close-button"
-                />
-              </div>
+        <div className="block">
+          <div className={this.state.fade ? 'fade-button' : 'user-summary'}>
+            <div className="user-summary_button-box">
+              <button
+                onClick={() => this.setState({fade: true})}
+                className="user-summary_button-summary"
+              >
+                See summary
+              </button>
             </div>
-            <p className="user-summary__analysis">
-              {personality[0] ? personality[0].analysis : null}
-            </p>
+          </div>
+
+          <div className={this.state.fade ? 'fade-data' : 'user-summary-hide'}>
+            <div
+              className={this.state.fade ? 'user-summary__data' : 'fade-button'}
+            >
+              <div className="user-summary__top">
+                <h2 className="user-summary__title">Your summary</h2>
+                <div className="user-summary__close">
+                  <Icon
+                    name="close"
+                    onClick={() => this.setState({fade: false})}
+                    className="user-summary__close-button"
+                  />
+                </div>
+              </div>
+              <p className="user-summary__analysis">
+                {personality[0] ? personality[0].analysis : null}
+              </p>
+            </div>
           </div>
         </div>
 
