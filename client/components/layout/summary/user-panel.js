@@ -8,30 +8,29 @@ const UserPanel = props => {
   return (
     <div className="user-panel__box">
       <div className="user-panel__left">
-        <img
-          className="user-panel__user-image"
-          alt="User photo"
-          src="/images/user-1.jpeg"
-        />
-        <span className="user-panel__user-name">Welcome, djfldl@gmail.com</span>
+        <img className="user-panel__user-image" alt="User photo" src={avatar} />
+        {/* <h4 className="user-panel__user-name__box"> */}
+        <span className="user-panel__user-name">Welcome, {email}</span>
+        {/* </h4> */}
+        {/* <span className="user-panel__user-name">Welcome, {email}</span> */}
       </div>
 
       <div className="user-panel__right">
         <div className="user-panel__item">
           <div className="user-panel__item-top">Level</div>
-          <div className="user-panel__item-bottom">3</div>
+          <div className="user-panel__item-bottom">{level + 1}</div>
         </div>
         <div className="user-panel__item">
           <div className="user-panel__item-top">Lives</div>
-          <div className="user-panel__item-bottom">2</div>
+          <div className="user-panel__item-bottom">{lives}</div>
         </div>
         <div className="user-panel__item">
           <div className="user-panel__item-top">HP</div>
-          <div className="user-panel__item-bottom">400</div>
+          <div className="user-panel__item-bottom">{HP}</div>
         </div>
         <div className="user-panel__item">
           <div className="user-panel__item-top">XP</div>
-          <div className="user-panel__item-bottom">30</div>
+          <div className="user-panel__item-bottom">{XP}</div>
         </div>
       </div>
     </div>
@@ -39,7 +38,6 @@ const UserPanel = props => {
 }
 
 const mapState = state => {
-  // console.log("STATEINUSERIS", state)
   return {
     avatar: state.user.avatar,
     email: state.user.email,

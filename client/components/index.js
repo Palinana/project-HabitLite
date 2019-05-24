@@ -16,4 +16,6 @@ export {default as Navigation} from './layout/landing/navigation'
 export {default as UserPanel} from './layout/summary/user-panel'
 export {default as UserSingleHabit} from './layout/summary/user-singleHabit'
 
+export {default as UserHabit} from './layout/habit/user-habit'
+
 export {default as Progress} from './ui/progress'

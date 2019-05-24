@@ -23,6 +23,11 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
+  avatar: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://34yigttpdc638c2g11fbif92-wpengine.netdna-ssl.com/wp-content/uploads/2016/09/default-user-img.jpg'
+  },
   progress: stat('progress'),
   level: stat('level'),
   xp: stat('xp'),

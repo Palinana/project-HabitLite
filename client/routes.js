@@ -31,7 +31,11 @@ class Routes extends Component {
             <Navigation />
             <Switch>
               {/* Routes placed here are only available after logging in */}
-
+              <Route
+                exact
+                path="/home/users/:id/habits/:id"
+                component={PersonalityQuiz}
+              />
               <Route exact path="/home/users/:id" component={UserHome} />
               <Route exact path="/quiz/users/:id" component={PersonalityQuiz} />
             </Switch>

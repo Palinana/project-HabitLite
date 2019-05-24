@@ -756,6 +756,8 @@ nav a {
 
 .user-panel__user-name {
   color: #070439;
+  padding-left: 1rem;
+  display: inline;
 }
 
 .user-summary_button-box {
@@ -771,7 +773,7 @@ nav a {
   font-size: 1.3rem;
   letter-spacing: 0.05rem;
   border-radius: 3rem;
-  width: 15%;
+  width: 13%;
   background-image: linear-gradient(to right, #dfa4a7, #fde9c8);
   color: #ffffff;
   text-shadow: none;
@@ -1029,6 +1031,9 @@ i.icon.close {
   }
 
   /* USER SUMMARY */
+  .user-panel__user-name {
+    display: none;
+  }
 
   .user-summary_button-box {
     display: flex;
@@ -1173,6 +1178,48 @@ i.icon.close {
     padding: 0 1rem;
   }
 
+  .user-panel__left {
+    position: relative;
+  }
+
+  .user-panel__user-name__box {
+    text-align: right;
+    position: absolute;
+    top: -20%;
+    right: -5rem;
+    width: 75%;
+  }
+
+  .user-panel__user-name {
+    text-align: right;
+    position: absolute;
+    top: -10%;
+    right: -5rem;
+    width: 75%;
+    font-size: 1.4rem;
+    padding: 1rem 0.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    display: inline;
+  }
+
+  .user-panel__item-top {
+    font-size: 1.4rem;
+  }
+
+  .user-panel__item-bottom {
+    font-size: 2rem;
+  }
+
+  .user-summary__card-title,
+  .user-summary__title {
+    font-size: 2rem;
+  }
+
+  .user-summary__analysis {
+    font-size: 1.4rem;
+  }
+
   .user-summary_button-summary {
     width: 35%;
   }
@@ -1230,6 +1277,15 @@ i.icon.close {
 
   .user-summary_button-summary {
     width: 25%;
+  }
+
+  .user-summary__card-title,
+  .user-summary__title {
+    font-size: 1.4rem;
+  }
+
+  .user-summary__analysis {
+    font-size: 1.3rem;
   }
 
   .user-summary__cards-box {
