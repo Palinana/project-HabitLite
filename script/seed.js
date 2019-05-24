@@ -38,49 +38,43 @@ async function seed() {
       id: 4,
       email: 'palina@email.com',
       password: '123',
-      username: 'palina',
       level: 1
     }),
     User.create({
       id: 5,
       email: 'priya@email.com',
       password: '123',
-      username: 'priya',
       level: 1
     }),
     User.create({
       id: 6,
       email: 'cody@email.com',
       password: '123',
-      username: 'cody',
-      level: 1
+      level: 1,
+      avatar: '/images/user-2.jpg'
     }),
     User.create({
       id: 7,
       email: 'murphy@email.com',
       password: '123',
-      username: 'murphy',
       level: 1
     }),
     User.create({
       id: 8,
       email: 'daniel@email.com',
       password: '123',
-      username: 'daniel',
       level: 1
     }),
     User.create({
       id: 9,
       email: 'sebastian@email.com',
       password: '123',
-      username: 'sebastian',
       level: 1
     }),
     User.create({
       id: 10,
       email: 'nancy@email.com',
       password: '123',
-      username: 'nancy',
       level: 1
     })
   ])

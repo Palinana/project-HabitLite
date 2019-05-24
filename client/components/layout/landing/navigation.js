@@ -9,7 +9,7 @@ const Navigation = ({handleClick, isLoggedIn}) => {
     <nav className="navbar navbar-expand-lg">
       <div className="header__container container">
         <Link to="/" className="navbar-brand small-logo">
-          <img src="/images/logo-32.png" alt="Logo Image" />
+          <img src="/logo-32.png" alt="Logo Image" />
         </Link>
         <Link to="/" className="navbar-brand logo">
           <img src="/images/logo.png" alt="Logo Image" />
