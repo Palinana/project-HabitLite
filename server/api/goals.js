@@ -9,6 +9,41 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+// Get allCustom goals by habitId
+router.get('/:userId', (req, res, next) => {
+  UserGoal.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [
+      {
+        model: Goal
+      }
+    ]
+  })
+    .then(goals => res.json(goals))
+    .catch(next)
+})
+
+// Get allCustom goals by habitId
+router.get('/:userId/:habitId', (req, res, next) => {
+  UserGoal.findAll({
+    where: {
+      userId: req.params.userId
+    },
+    include: [
+      {
+        model: Goal,
+        where: {
+          habitId: req.params.habitId
+        }
+      }
+    ]
+  })
+    .then(goals => res.json(goals))
+    .catch(next)
+})
+
 // Update checked goal to "checked" or "unchecked"
 router.put('/:goalId', (req, res, next) => {
   UserGoal.findById(req.params.goalId)
@@ -31,25 +66,6 @@ router.put('/:goalId', (req, res, next) => {
         ]
       }).then(habits => res.json(habits))
     })
-    .catch(next)
-})
-
-// Get allCustom goals by habitId
-router.get('/:userId/:habitId', (req, res, next) => {
-  UserGoal.findAll({
-    where: {
-      userId: req.params.userId
-    },
-    include: [
-      {
-        model: Goal,
-        where: {
-          habitId: req.params.habitId
-        }
-      }
-    ]
-  })
-    .then(goals => res.json(goals))
     .catch(next)
 })
 

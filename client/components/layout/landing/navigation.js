@@ -32,7 +32,7 @@ const Navigation = ({handleClick, isLoggedIn}) => {
               <Link to="/" className="hvrcenter">
                 Team
               </Link>
-              <Link to="/login" className="hvrcenter">
+              <Link to="/login" className="hvrcenter navbar__login-button">
                 Login
               </Link>
             </div>
