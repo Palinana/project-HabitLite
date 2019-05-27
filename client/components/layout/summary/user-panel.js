@@ -9,10 +9,7 @@ const UserPanel = props => {
     <div className="user-panel__box">
       <div className="user-panel__left">
         <img className="user-panel__user-image" alt="User photo" src={avatar} />
-        {/* <h4 className="user-panel__user-name__box"> */}
         <span className="user-panel__user-name">Welcome, {email}</span>
-        {/* </h4> */}
-        {/* <span className="user-panel__user-name">Welcome, {email}</span> */}
       </div>
 
       <div className="user-panel__right">

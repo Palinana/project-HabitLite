@@ -8,7 +8,8 @@ import {
   UserHome,
   PersonalityQuiz,
   LandingPage,
-  Navigation
+  Navigation,
+  UserHabit
 } from './components'
 import {me} from './store'
 
@@ -34,7 +35,7 @@ class Routes extends Component {
               <Route
                 exact
                 path="/home/users/:id/habits/:id"
-                component={PersonalityQuiz}
+                component={UserHabit}
               />
               <Route exact path="/home/users/:id" component={UserHome} />
               <Route exact path="/quiz/users/:id" component={PersonalityQuiz} />

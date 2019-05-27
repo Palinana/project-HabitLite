@@ -3,11 +3,9 @@ Main colors:
 
 Background: #F9F8FE
 Secondary color: #dc5e85
-Grey light: #9a9898
-Grey dark: #5f5d5d
+
 dark purple: #8068b5
-
-
+light purple: #BCBAF9
 
 grey dark: #070439;
 grey light: #84828E;
@@ -75,7 +73,25 @@ form div {
   display: inline-block;
 }
 
-/* === LOGIN PAGE === */
+/*======================
+      AUTH PAGE
+=======================*/
+
+.home-section__auth {
+  color: #e47194;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.home-section__auth-wrapper {
+  display: block;
+  text-align: center;
+}
+
+.home-section__auth-box {
+  font-size: 1.2rem;
+  color: #777;
+}
 
 .login,
 .image {
@@ -220,26 +236,6 @@ i.icon.exclamation.circle {
 }
 
 /*======================
-      AUTH PAGE
-=======================*/
-
-.home-section__auth {
-  color: #e47194;
-  margin-left: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.home-section__auth-wrapper {
-  display: block;
-  text-align: center;
-}
-
-.home-section__auth-box {
-  font-size: 1.2rem;
-  color: #777;
-}
-
-/*======================
       LANDING PAGE
 =======================*/
 
@@ -258,7 +254,7 @@ nav a {
   margin: 1.5em !important;
 }
 
-.header-links a:hover {
+.header-links a:hover:not(:last-child) {
   color: #dc5e85;
 }
 
@@ -272,28 +268,19 @@ nav a {
   overflow: hidden;
 }
 
-.hvrcenter:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  background: #ecf0f1;
-  height: 2px;
-  -webkit-transition-property: left, right;
-  transition-property: left, right;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+.navbar__login-button {
+  padding: 1rem 3.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+  border-radius: 3rem;
+  text-shadow: none;
+  text-align: center;
+  border: 2px solid #bcbaf9;
 }
 
-.hvrcenter:hover:before,
-.hvrcenter:focus:before,
-.hvrcenter:active:before {
-  left: 0;
-  right: 0;
+.navbar__login-button:hover {
+  background: #bcbaf9;
+  color: white;
 }
 
 .logo {
@@ -681,7 +668,6 @@ nav a {
   letter-spacing: 0.15rem;
   border-radius: 3rem;
   width: 25%;
-  /* background-color: #dc5e85; */
   background-image: linear-gradient(to right, #dfa4a7, #fde9c8);
   color: #ffffff;
   text-shadow: none;
@@ -786,7 +772,6 @@ nav a {
 
 .user-summary {
   display: block !important;
-  /* margin: 0 1.5em; */
 }
 
 .user-summary__top {
@@ -847,7 +832,6 @@ i.icon.close {
   display: flex;
   align-self: stretch;
   border-radius: 1rem;
-  /* margin: 0 0.5em; */
 }
 
 .card {
@@ -872,6 +856,31 @@ i.icon.close {
 .user-summary__card-progress {
   width: 80%;
   margin: 0 auto;
+}
+
+/*======================
+   USER HABIT SECTION
+=======================*/
+.user-habit__box {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 2rem;
+  background: #ffffff;
+  padding: 2rem;
+  border: 1px solid #e6eaee;
+  border-radius: 1rem;
+}
+
+.user-habit__progress {
+  flex-basis: 35%;
+  order: 1;
+}
+
+.user-habit__goals {
+  flex-basis: 55%;
+  order: 2;
 }
 
 /* =================================================== */

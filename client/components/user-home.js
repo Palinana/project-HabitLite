@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {Icon} from 'semantic-ui-react'
 
 import UserPanel from '../components/layout/summary/user-panel'
@@ -27,6 +26,7 @@ class UserHome extends Component {
   render() {
     const personality = this.props.personality
     const habits = this.props.habits
+    const userId = this.props.match.params.id
 
     return (
       <div className="container">
@@ -70,7 +70,7 @@ class UserHome extends Component {
         <div className="user-summary__cards-box">
           {habits ? (
             habits.map(habit => (
-              <UserSingleHabit habit={habit} key={habit.id} />
+              <UserSingleHabit habit={habit} userId={userId} key={habit.id} />
             ))
           ) : (
             <div>You don't have any habits</div>
