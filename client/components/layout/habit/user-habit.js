@@ -20,8 +20,8 @@ class UserHabit extends Component {
 
   render() {
     const goals = this.props.goals.map(x => ({...x.goal}))
-    const habit = this.props.habit
-    const userId = this.props.userId
+    const habit = this.props.location.state.habit
+    const userId = this.props.location.state.userId
 
     return (
       <div className="container">
@@ -35,7 +35,19 @@ class UserHabit extends Component {
               <Progress habit={habit} />
             </div>
 
-            <div className="user-habit__goals">{goals}</div>
+            <div className="user-habit__goals">
+              {goals.map(goal => (
+                <div className="checkbox" key={goal.id}>
+                  <label>
+                    <input type="checkbox" value="" />
+                    <span className="cr">
+                      <i className="cr-icon glyphicon glyphicon-ok" />
+                    </span>
+                    {goal.description}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
