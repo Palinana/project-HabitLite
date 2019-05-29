@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import UserPanel from '../summary/user-panel'
 import Progress from '../../ui/progress'
+import {Icon} from 'semantic-ui-react'
 
 import {fetchUserGoals, postGoal} from '../../../store'
 
@@ -32,21 +33,42 @@ class UserHabit extends Component {
         <div className="block">
           <div className="user-habit__box">
             <div className="user-habit__progress">
+              <div>{habit.habit.name}</div>
               <Progress habit={habit} />
             </div>
 
             <div className="user-habit__goals">
-              {goals.map(goal => (
-                <div className="checkbox" key={goal.id}>
-                  <label>
-                    <input type="checkbox" value="" />
-                    <span className="cr">
-                      <i className="cr-icon glyphicon glyphicon-ok" />
+              <div className="user-habit__goals-box">
+                <h5 className="user-habit__goals-title">Your daily goals</h5>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control user-habit__input"
+                    placeholder="Add new daily goal"
+                    aria-label="Add new daily goal"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text" id="basic-addon2">
+                      <Icon name="plus" className="plus-icon" />
                     </span>
-                    {goal.description}
-                  </label>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              <div>
+                {goals.map(goal => (
+                  <div className="checkbox" key={goal.id}>
+                    <label>
+                      <input type="checkbox" value="" />
+                      <span className="cr">
+                        <Icon name="check" className="cr-icon" />
+                      </span>
+                      {goal.description}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
