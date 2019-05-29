@@ -883,6 +883,42 @@ i.icon.close {
   order: 2;
 }
 
+.user-habit__goals-title {
+  font-size: inherit;
+}
+
+.user-habit__input {
+  border-radius: 2rem;
+  padding: 1.1rem 3rem;
+  height: auto;
+  font-size: 1.2rem;
+}
+
+.input-group-append {
+  margin-left: -1px;
+  z-index: 10;
+}
+.input-group-text {
+  padding: 0.375rem 2rem;
+  border-radius: 2rem;
+}
+
+.plus-icon {
+  height: auto !important;
+}
+
+.checkbox {
+  padding: 0.5rem 0;
+}
+
+.checkbox:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.checkbox label {
+  margin: 0.5rem 0;
+}
+
 .checkbox label:after {
   content: '';
   display: table;
@@ -922,6 +958,10 @@ i.icon.close {
 
 .checkbox label input[type='checkbox']:disabled + .cr {
   opacity: 0.5;
+}
+
+i.icon.check:before {
+  color: #e47194;
 }
 
 /* =================================================== */
