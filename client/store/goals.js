@@ -5,18 +5,18 @@ const GET_USER_GOALS = 'GET_USER_GOALS'
 const ADD_GOAL = 'ADD_GOAL'
 
 //ACTION CREATORS
-export function getUserGoals(allUserGoals) {
-  return {type: GET_USER_GOALS, allUserGoals}
+export function getUserGoals(goals) {
+  return {type: GET_USER_GOALS, goals}
 }
 export function addGoal(goal) {
   return {type: ADD_GOAL, goal}
 }
 
 //THUNKS
-export const fetchUserGoals = userId => {
+export const fetchUserGoals = (userId, habitId) => {
   return dispatch => {
     axios
-      .get(`/api/goals/${userId}`)
+      .get(`/api/goals/${userId}/${habitId}`)
       .then(res => {
         // console.log("Getting categories", res.data)
         return res.data
@@ -28,10 +28,10 @@ export const fetchUserGoals = userId => {
   }
 }
 
-export const postGoal = (userId, goal) => {
+export const postGoal = (userId, habitId, goal) => {
   return dispatch => {
     return axios
-      .post(`/api/goals/${userId}`, goal)
+      .post(`/api/goals/${userId}/${habitId}`, goal)
       .then(res => {
         console.log('Getting goals', res.data)
         return res.data
@@ -47,9 +47,10 @@ export const postGoal = (userId, goal) => {
 export default function reducer(state = [], action) {
   switch (action.type) {
     case GET_USER_GOALS:
-      return action.allUserGoals
+      return action.goals
     case ADD_GOAL:
-      return [...state, action.goal]
+      return [action.goal, ...state]
+    // return [...state, action.goal]
     default:
       return state
   }

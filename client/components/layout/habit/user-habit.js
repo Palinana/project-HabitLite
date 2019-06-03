@@ -11,18 +11,54 @@ import {fetchUserGoals, postGoal} from '../../../store'
 class UserHabit extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isClicked: false,
+      goal: {},
+      goalGroup: 'Custom',
+      description: '',
+      complete: false
+    }
   }
 
   componentDidMount() {
     const userId = this.props.location.state.userId
-    this.props.getUserGoals(userId)
+    const habitId = this.props.location.state.habit.habitId
+    this.props.getUserGoals(userId, habitId)
+  }
+
+  handleChange = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    const goal = {
+      goalGroup: 'Custom',
+      description: this.state.description,
+      complete: false
+    }
+    const userId = this.props.location.state.userId || ''
+    const habitId = this.props.location.state.habit.habitId || ''
+    this.props.postNewGoal(userId, habitId, goal)
+    this.setState({goal: {}})
+    this.handleClear(event)
+  }
+
+  handleClear = event => {
+    event.preventDefault()
+    this.setState({
+      isClicked: false,
+      habit: {},
+      description: '',
+      complete: false
+    })
   }
 
   render() {
     const goals = this.props.goals.map(x => ({...x.goal}))
     const habit = this.props.location.state.habit
     const userId = this.props.location.state.userId
+    console.log('goals ', this.props.goals)
 
     return (
       <div className="container">
@@ -40,34 +76,44 @@ class UserHabit extends Component {
             <div className="user-habit__goals">
               <div className="user-habit__goals-box">
                 <h5 className="user-habit__goals-title">Your daily goals</h5>
-                <div className="input-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control user-habit__input"
-                    placeholder="Add new daily goal"
-                    aria-label="Add new daily goal"
-                    aria-describedby="basic-addon2"
-                  />
-                  <div className="input-group-append">
-                    <span className="input-group-text" id="basic-addon2">
-                      <Icon name="plus" className="plus-icon" />
-                    </span>
+                <form className="form-inline mb-3" onSubmit={this.handleSubmit}>
+                  <div className="form-group user-habit__goal-form">
+                    <input
+                      type="text"
+                      className="form-control user-habit__input"
+                      placeholder="Add new daily goal"
+                      aria-label="Add new daily goal"
+                      aria-describedby="basic-addon2"
+                      name="description"
+                      onChange={this.handleChange}
+                      value={this.state.description}
+                    />
                   </div>
-                </div>
+                  <div className="form-group">
+                    <button
+                      className="btn btn-outline-secondary input-group-text"
+                      type="submit"
+                      id="user-habit__btn"
+                    >
+                      <Icon name="plus" className="plus-icon" />
+                    </button>
+                  </div>
+                </form>
               </div>
 
               <div>
-                {goals.map(goal => (
-                  <div className="checkbox" key={goal.id}>
-                    <label>
-                      <input type="checkbox" value="" />
-                      <span className="cr">
-                        <Icon name="check" className="cr-icon" />
-                      </span>
-                      {goal.description}
-                    </label>
-                  </div>
-                ))}
+                {goals &&
+                  goals.map(goal => (
+                    <div className="checkbox" key={goal.id}>
+                      <label>
+                        <input type="checkbox" value="" />
+                        <span className="cr">
+                          <Icon name="check" className="cr-icon" />
+                        </span>
+                        {goal.description}
+                      </label>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -83,10 +129,13 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = dispatch => {
   return {
-    getUserGoals: id => {
-      dispatch(fetchUserGoals(id))
+    getUserGoals: (userId, habitId) => {
+      dispatch(fetchUserGoals(userId, habitId))
+    },
+    postNewGoal: (userId, habitId, goal) => {
+      dispatch(postGoal(userId, habitId, goal))
     }
   }
 }
