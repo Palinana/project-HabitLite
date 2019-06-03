@@ -73,7 +73,7 @@ router.post('/:userId/:habitId', (req, res, next) => {
   Goal.create({
     habitId: Number(req.params.habitId),
     description: req.body.description,
-    goalGroup: req.body.goalGroup
+    goal: req.body.goalGroup
   })
     .then(goal =>
       UserGoal.create(
