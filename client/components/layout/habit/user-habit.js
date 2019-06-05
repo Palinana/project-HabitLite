@@ -6,13 +6,13 @@ import UserPanel from '../summary/user-panel'
 import Progress from '../../ui/progress'
 import {Icon} from 'semantic-ui-react'
 
-import {fetchUserGoals, postGoal} from '../../../store'
+import {fetchUserGoals, postGoal, updateGoal, updateUser} from '../../../store'
 
 class UserHabit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isClicked: false,
+      isChecked: false,
       goal: {},
       goalGroup: 'Custom',
       description: '',
@@ -55,10 +55,14 @@ class UserHabit extends Component {
   }
 
   render() {
-    const goals = this.props.goals.map(x => ({...x.goal}))
     const habit = this.props.location.state.habit
-    const userId = this.props.location.state.userId
-    console.log('goals ', this.props.goals)
+    // const userId = this.props.location.state.userId
+    const {goals} = this.props
+
+    let completedGoals = goals.filter(goal => goal.complete === true)
+    let incompletedGoals = goals.filter(goal => goal.complete === false)
+    console.log('completedGoals ', completedGoals)
+    console.log('incompletedGoals ', incompletedGoals)
 
     return (
       <div className="container">
@@ -99,21 +103,65 @@ class UserHabit extends Component {
                     </button>
                   </div>
                 </form>
+
+                <div>
+                  <h5>Incompleted: </h5>
+                  {incompletedGoals.length ? (
+                    incompletedGoals.map(goal => (
+                      <div className="checkbox" key={goal.goal.id}>
+                        <label>
+                          <input
+                            type="checkbox"
+                            onClick={this.props.update.bind(
+                              this,
+                              goal,
+                              this.props.userId,
+                              habit.id,
+                              this.props.goalXP
+                            )}
+                          />
+                          <span className="cr">
+                            <Icon name="check" className="cr-icon" />
+                          </span>
+                          {goal.goal.description}
+                        </label>
+                      </div>
+                    ))
+                  ) : (
+                    <h5>Nothing to complete</h5>
+                  )}
+                </div>
               </div>
 
-              <div>
-                {goals &&
-                  goals.map(goal => (
-                    <div className="checkbox" key={goal.id}>
-                      <label>
-                        <input type="checkbox" value="" />
-                        <span className="cr">
-                          <Icon name="check" className="cr-icon" />
-                        </span>
-                        {goal.description}
-                      </label>
-                    </div>
-                  ))}
+              <div className="user-habit__goals-box mt-5">
+                <div>
+                  <h5>Completed: </h5>
+                  {completedGoals.length ? (
+                    completedGoals.map(goal => (
+                      <div className="checkbox" key={goal.goal.id}>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={goal.complete}
+                            onClick={this.props.update.bind(
+                              this,
+                              goal,
+                              this.props.userId,
+                              habit.id,
+                              this.props.goalXP
+                            )}
+                          />
+                          <span className="cr">
+                            <Icon name="check" className="cr-icon" />
+                          </span>
+                          {goal.goal.description}
+                        </label>
+                      </div>
+                    ))
+                  ) : (
+                    <h5>You haven't completed daily goals yet</h5>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -136,6 +184,18 @@ const mapDispatch = dispatch => {
     },
     postNewGoal: (userId, habitId, goal) => {
       dispatch(postGoal(userId, habitId, goal))
+    },
+    update(userGoal, userId, habitId, incrXP, evt) {
+      if (!evt.target.checked) incrXP = -incrXP
+      dispatch(updateUser(userGoal.id, incrXP))
+      dispatch(
+        updateGoal(
+          userGoal.userId,
+          userGoal.goal.habitId,
+          userGoal.id,
+          evt.target.checked
+        )
+      )
     }
   }
 }

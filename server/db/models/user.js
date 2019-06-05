@@ -60,11 +60,11 @@ User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 
-User.prototype.addXP = async function(categoryId, by) {
+User.prototype.addXP = async function(habitId, by) {
   await UserHabit.increment('XP', {
     where: {
       userId: this.id,
-      categoryId
+      habitId
     },
     by
   })

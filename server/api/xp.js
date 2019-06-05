@@ -5,7 +5,7 @@ module.exports = router
 router.put('/', async (req, res, next) => {
   const lastLevel = req.user.level
 
-  await req.user.addXP(+req.body.categoryId, +req.body.incrXP)
+  await req.user.addXP(+req.body.habitId, +req.body.incrXP)
   User.find({
     where: {
       id: req.user.id

@@ -16,7 +16,11 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
+const getUser = (user, levelledUp = false) => ({
+  type: GET_USER,
+  user,
+  levelledUp
+})
 const getUserById = id => ({type: GET_USER_BY_ID, id})
 const removeUser = () => ({type: REMOVE_USER})
 
@@ -73,13 +77,27 @@ export const fetchUserById = id => async dispatch => {
   }
 }
 
+export const updateUser = (habitId, incrXP = 0, HP = 0) => {
+  return dispatch => {
+    axios
+      .put('/api/xp', {habitId, incrXP})
+      .then(res => {
+        dispatch(getUser(res.data.user, res.data.levelledUp))
+      })
+      .catch(err => console.log(err))
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return {
+        ...action.user,
+        levelledUp: action.levelledUp
+      }
     case GET_USER_BY_ID:
       return action.id
     case REMOVE_USER:

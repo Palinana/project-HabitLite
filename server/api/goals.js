@@ -49,7 +49,8 @@ router.put('/:goalId', (req, res, next) => {
   UserGoal.findById(req.params.goalId)
     .then(goal => {
       goal.complete = req.body.checked
-      return goal.save()
+      goal.save()
+      return res.json(goal)
     })
     .then(() => {
       UserGoal.findAll({
@@ -60,11 +61,13 @@ router.put('/:goalId', (req, res, next) => {
           {
             model: Goal,
             where: {
-              categoryId: req.body.habitId
+              habitId: req.body.habitId
             }
           }
         ]
-      }).then(habits => res.json(habits))
+      }).then(habits => {
+        return res.json(habits)
+      })
     })
     .catch(next)
 })
@@ -73,7 +76,7 @@ router.post('/:userId/:habitId', (req, res, next) => {
   Goal.create({
     habitId: Number(req.params.habitId),
     description: req.body.description,
-    goal: req.body.goalGroup
+    goalGroup: req.body.goalGroup
   })
     .then(goal =>
       UserGoal.create(
