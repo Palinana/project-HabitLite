@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 //ACTION TYPES
 const GET_USER_GOALS = 'GET_USER_GOALS'
@@ -18,7 +19,6 @@ export const fetchUserGoals = (userId, habitId) => {
     axios
       .get(`/api/goals/${userId}/${habitId}`)
       .then(res => {
-        // console.log("Getting categories", res.data)
         return res.data
       })
       .then(goals => {
@@ -38,6 +38,23 @@ export const postGoal = (userId, habitId, goal) => {
       })
       .then(newGoal => {
         dispatch(addGoal(newGoal))
+      })
+      .catch(console.error)
+  }
+}
+
+export const updateGoal = (userId, habitId, goalId, checked) => {
+  return function thunk(dispatch) {
+    return axios
+      .put(`/api/goals/${goalId}`, {checked, userId, habitId})
+      .then(() => {
+        return axios.get(`/api/goals/${userId}/${habitId}`)
+      })
+      .then(res => {
+        return res.data
+      })
+      .then(goals => {
+        dispatch(getUserGoals(goals))
       })
       .catch(console.error)
   }
