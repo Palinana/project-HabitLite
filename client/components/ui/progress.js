@@ -11,7 +11,7 @@ const Progress = props => {
   return (
     <div className="chart">
       {props.levelledUp ? (
-        <div className="level-up">Level {props.level + 1}!</div>
+        <div className="level-up">Level {props.level}!</div>
       ) : (
         <div />
       )}
@@ -65,10 +65,18 @@ const Progress = props => {
 const mapState = (state, ownProps) => {
   let progress
   if (ownProps.habit) {
-    progress = state.user.xp ? ownProps.habit.XP / state.user.xp * 100 : 0
+    console.log('state.user.xp ', state.user.xp)
+    console.log('ownProps.habit.XP ', ownProps.habit.XP)
+    console.log(
+      'state.user.xp / ownProps.habit.XP * 10 ',
+      state.user.xp / ownProps.habit.XP * 10
+    )
+    progress = state.user.xp ? state.user.xp / ownProps.habit.XP * 10 : 0
+    if (progress > 100) progress = 100
   } else {
     progress = state.user.progress
   }
+  console.log('progress ', progress)
 
   return {
     progress: progress,

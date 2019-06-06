@@ -1,21 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const UserPanel = props => {
-  const {avatar, email, level, lives, HP, XP} = props
+  const {userId, avatar, email, level, lives, HP, XP} = props
 
   return (
     <div className="user-panel__box">
       <div className="user-panel__left">
-        <img className="user-panel__user-image" alt="User photo" src={avatar} />
+        <Link to={`/home/users/${userId}`}>
+          <img
+            className="user-panel__user-image"
+            alt="User photo"
+            src={avatar}
+          />
+        </Link>
+
         <span className="user-panel__user-name">Welcome, {email}</span>
       </div>
 
       <div className="user-panel__right">
         <div className="user-panel__item">
           <div className="user-panel__item-top">Level</div>
-          <div className="user-panel__item-bottom">{level + 1}</div>
+          <div className="user-panel__item-bottom">{level}</div>
         </div>
         <div className="user-panel__item">
           <div className="user-panel__item-top">Lives</div>
@@ -36,6 +44,7 @@ const UserPanel = props => {
 
 const mapState = state => {
   return {
+    userId: state.user.id,
     avatar: state.user.avatar,
     email: state.user.email,
     level: state.user.level,
