@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../../../store'
 
-const Navigation = ({handleClick, isLoggedIn}) => {
+const Navigation = ({handleClick, isLoggedIn, userId}) => {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="header__container container">
@@ -18,7 +18,7 @@ const Navigation = ({handleClick, isLoggedIn}) => {
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
+              <Link to={`/home/users/${userId}`}>Home</Link>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
@@ -48,7 +48,8 @@ const Navigation = ({handleClick, isLoggedIn}) => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 

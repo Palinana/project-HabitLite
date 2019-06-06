@@ -117,7 +117,7 @@ class UserHabit extends Component {
                               goal,
                               this.props.userId,
                               habit.id,
-                              this.props.goalXP
+                              habit.XP
                             )}
                           />
                           <span className="cr">
@@ -148,7 +148,7 @@ class UserHabit extends Component {
                               goal,
                               this.props.userId,
                               habit.id,
-                              this.props.goalXP
+                              habit.XP
                             )}
                           />
                           <span className="cr">
@@ -172,6 +172,7 @@ class UserHabit extends Component {
 }
 
 const mapState = state => {
+  console.log('state => ', state)
   return {
     goals: state.goals
   }
@@ -187,7 +188,8 @@ const mapDispatch = dispatch => {
     },
     update(userGoal, userId, habitId, incrXP, evt) {
       if (!evt.target.checked) incrXP = -incrXP
-      dispatch(updateUser(userGoal.id, incrXP))
+      else incrXP = +incrXP
+      dispatch(updateUser(userGoal.goal.habitId, incrXP))
       dispatch(
         updateGoal(
           userGoal.userId,
