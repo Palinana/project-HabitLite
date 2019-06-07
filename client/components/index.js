@@ -19,3 +19,4 @@ export {default as UserSingleHabit} from './layout/summary/user-singleHabit'
 export {default as UserHabit} from './layout/habit/user-habit'
 
 export {default as Progress} from './ui/progress'
+export {default as GoalProgress} from './ui/goal-progress'
