@@ -3,6 +3,8 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const {levelForXP, LEVELS} = require('./level')
 const UserHabit = require('./userHabit')
+const Goal = require('./goal')
+const UserGoal = require('./userGoal')
 
 const stat = name => ({
   type: Sequelize.VIRTUAL,
@@ -86,6 +88,14 @@ User.prototype.getHP = function() {
   })
 }
 
+User.prototype.getGoalsNumber = function(habitId) {
+  return Goal.count({
+    where: {
+      habitId: habitId
+    }
+  })
+}
+
 User.prototype.getLevel = async function() {
   return levelForXP(await this.getXP())
 }
@@ -95,7 +105,9 @@ User.prototype.getProgress = async function() {
   const level = levelForXP(currXP)
   const {maxXP} = LEVELS[level]
   const {maxXP: lastMaxXP} = LEVELS[level - 1] || {maxXP: 0}
-
+  console.log('lastMaxXP ', lastMaxXP)
+  console.log('currXP ', currXP)
+  console.log('maxXP ', maxXP)
   return (currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100
 }
 

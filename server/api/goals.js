@@ -45,7 +45,11 @@ router.get('/:userId/:habitId', (req, res, next) => {
 })
 
 // Update checked goal to "checked" or "unchecked"
-router.put('/:goalId', (req, res, next) => {
+router.put('/:goalId', async (req, res, next) => {
+  console.log('body.habitId ', req.body.habitId)
+  let vale = await req.user.getGoalsNumber(req.body.habitId)
+  console.log('vale ', vale)
+
   UserGoal.findById(req.params.goalId)
     .then(goal => {
       goal.complete = req.body.checked
@@ -83,8 +87,8 @@ router.post('/:userId/:habitId', (req, res, next) => {
         {
           goalId: Number(goal.id),
           userId: req.params.userId,
-          XP: 10,
-          HP: 100,
+          XP: 0,
+          HP: 50,
           complete: req.body.complete
         },
         {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import UserPanel from '../summary/user-panel'
-import Progress from '../../ui/progress'
+import GoalProgress from '../../ui/goal-progress'
 import {Icon} from 'semantic-ui-react'
 
 import {fetchUserGoals, postGoal, updateGoal, updateUser} from '../../../store'
@@ -61,8 +61,8 @@ class UserHabit extends Component {
 
     let completedGoals = goals.filter(goal => goal.complete === true)
     let incompletedGoals = goals.filter(goal => goal.complete === false)
-    console.log('completedGoals ', completedGoals)
-    console.log('incompletedGoals ', incompletedGoals)
+    // console.log('completedGoals ', completedGoals)
+    // console.log('incompletedGoals ', incompletedGoals)
 
     return (
       <div className="container">
@@ -74,7 +74,7 @@ class UserHabit extends Component {
           <div className="user-habit__box">
             <div className="user-habit__progress">
               <div>{habit.habit.name}</div>
-              <Progress habit={habit} />
+              <GoalProgress habit={habit} />
             </div>
 
             <div className="user-habit__goals">
@@ -172,7 +172,7 @@ class UserHabit extends Component {
 }
 
 const mapState = state => {
-  console.log('state => ', state)
+  // console.log('state => ', state)
   return {
     goals: state.goals
   }
@@ -187,8 +187,8 @@ const mapDispatch = dispatch => {
       dispatch(postGoal(userId, habitId, goal))
     },
     update(userGoal, userId, habitId, incrXP, evt) {
-      if (!evt.target.checked) incrXP = -incrXP
-      else incrXP = +incrXP
+      if (!evt.target.checked) incrXP = -1
+      else incrXP = +1
       dispatch(updateUser(userGoal.goal.habitId, incrXP))
       dispatch(
         updateGoal(
