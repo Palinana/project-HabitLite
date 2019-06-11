@@ -21,9 +21,8 @@ const Reviews = () => {
 
           <div className="review-sect__card testimonial-card-center col-sm">
             <p>
-              HabitLite has improved our my productivity by an order of
-              magnitude. Since I has started to use the app I feel more
-              productive.
+              HabitLite has improved my productivity by an order of magnitude.
+              Since I has started to use the app I feel more productive.
             </p>
             <img
               className="review-sect__image"

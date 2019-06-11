@@ -30,13 +30,13 @@ const Progress = props => {
               fill: d => {
                 let color
                 if (d.y > 0 && d.y < 30) {
-                  color = '#cac9f3'
+                  color = '#ef8d8d'
                 }
-                if (d.y > 30 && d.y < 50) {
-                  color = '#908ece'
+                if (d.y >= 30 && d.y < 50) {
+                  color = '#f7ebba'
                 }
-                if (d.y > 50) {
-                  color = '#696ba0'
+                if (d.y >= 50) {
+                  color = '#badac5'
                 }
                 return d.x === 1 ? color : 'transparent'
               }
@@ -65,18 +65,11 @@ const Progress = props => {
 const mapState = (state, ownProps) => {
   let progress
   if (ownProps.habit) {
-    console.log('state.user.xp ', state.user.xp)
-    console.log('ownProps.habit.XP ', ownProps.habit.XP)
-    console.log(
-      'state.user.xp / ownProps.habit.XP * 10 ',
-      state.user.xp / ownProps.habit.XP * 10
-    )
     progress = state.user.xp ? state.user.xp / ownProps.habit.XP * 10 : 0
     if (progress > 100) progress = 100
   } else {
-    progress = state.user.progress
+    progress = state.user.progress[0]
   }
-  console.log('progress ', progress)
 
   return {
     progress: progress,

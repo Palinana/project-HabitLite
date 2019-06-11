@@ -22,7 +22,7 @@ const InfoSection = () => {
             <span className="info-link__arrow">
               <img
                 className="info-sect__arrow"
-                src="./images/arrow.svg"
+                src="./images/right-arrow.svg"
                 alt="arrow"
               />
             </span>
