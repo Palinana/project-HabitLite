@@ -13,6 +13,9 @@ const stat = name => ({
   }
 })
 
+let goalsProgress = 0
+let currentCheckedGoals = 0
+
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -63,6 +66,24 @@ User.prototype.correctPassword = function(candidatePwd) {
 }
 
 User.prototype.addXP = async function(habitId, by) {
+  //change with every check
+  let totalNumberGoals = await this.getGoalsNumber(habitId) //total = 8
+
+  if (currentCheckedGoals < 0) currentCheckedGoals = 0
+
+  if (currentCheckedGoals > totalNumberGoals) {
+    currentCheckedGoals = 0
+    goalsProgress = 0
+  } else if (currentCheckedGoals === totalNumberGoals) {
+    goalsProgress = 100
+  } else if (currentCheckedGoals < totalNumberGoals) {
+    if (by === 1) currentCheckedGoals = +by
+    else currentCheckedGoals = by
+    goalsProgress += currentCheckedGoals / totalNumberGoals * 100
+  }
+
+  // console.log('currentCheckedGoals == ', currentCheckedGoals)
+  // console.log('goalsProgress == ', goalsProgress)
   await UserHabit.increment('XP', {
     where: {
       userId: this.id,
@@ -70,6 +91,7 @@ User.prototype.addXP = async function(habitId, by) {
     },
     by
   })
+  return goalsProgress
 }
 
 User.prototype.getXP = function() {
@@ -105,11 +127,18 @@ User.prototype.getProgress = async function() {
   const level = levelForXP(currXP)
   const {maxXP} = LEVELS[level]
   const {maxXP: lastMaxXP} = LEVELS[level - 1] || {maxXP: 0}
-  console.log('lastMaxXP ', lastMaxXP)
-  console.log('currXP ', currXP)
-  console.log('maxXP ', maxXP)
-  return (currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100
+  // console.log('lastMaxXP ', lastMaxXP)
+  // console.log('currXP ', currXP)
+  // console.log('maxXP ', maxXP)
+  // console.log('goalsProgress ', goalsProgress)
+
+  // return (currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100
+  return [(currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100, goalsProgress]
 }
+
+// User.prototype.getGoalsProgress = function() {
+//   return goalsProgress;
+// }
 
 /**
  * classMethods

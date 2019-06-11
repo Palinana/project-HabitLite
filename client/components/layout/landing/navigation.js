@@ -19,7 +19,11 @@ const Navigation = ({handleClick, isLoggedIn, userId}) => {
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to={`/home/users/${userId}`}>Home</Link>
-              <a href="#" onClick={handleClick}>
+              <a
+                href="#"
+                onClick={handleClick}
+                className="header-links__logout"
+              >
                 Logout
               </a>
             </div>

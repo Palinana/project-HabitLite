@@ -104,7 +104,7 @@ class UserHabit extends Component {
                   </div>
                 </form>
 
-                <div>
+                <div className="user-goals__incompleted">
                   <h5>Incompleted: </h5>
                   {incompletedGoals.length ? (
                     incompletedGoals.map(goal => (
@@ -134,7 +134,7 @@ class UserHabit extends Component {
               </div>
 
               <div className="user-habit__goals-box mt-5">
-                <div>
+                <div className="user-goals__completed">
                   <h5>Completed: </h5>
                   {completedGoals.length ? (
                     completedGoals.map(goal => (

@@ -30,13 +30,13 @@ const GoalProgress = props => {
               fill: d => {
                 let color
                 if (d.y > 0 && d.y < 30) {
-                  color = '#cac9f3'
+                  color = '#ef8d8d'
                 }
-                if (d.y > 30 && d.y < 50) {
-                  color = '#908ece'
+                if (d.y >= 30 && d.y < 50) {
+                  color = '#f7ebba'
                 }
-                if (d.y > 50) {
-                  color = '#696ba0'
+                if (d.y >= 50) {
+                  color = '#badac5'
                 }
                 return d.x === 1 ? color : 'transparent'
               }
@@ -63,20 +63,10 @@ const GoalProgress = props => {
 }
 
 const mapState = state => {
-  let goalProgress = 0
-
-  if (state.goals.length) {
-    console.log('state.goals ', state.goals.length)
-    console.log('state.xp ', state.user.xp)
-    // let percent = 100/state.goals.length
-
-    goalProgress = state.user.xp + 1
-  }
-
   return {
     goals: state.user.goals,
     xp: state.user.xp,
-    goalProgress: goalProgress,
+    goalProgress: state.user.progress[1],
     levelledUp: state.user.levelledUp,
     level: state.user.level
   }
