@@ -29,7 +29,7 @@ class UserHome extends Component {
     const userId = this.props.match.params.id
 
     return (
-      <div className="container">
+      <div className="container user-summary__container">
         <div className="block">
           <UserPanel />
         </div>

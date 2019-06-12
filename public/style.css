@@ -368,6 +368,7 @@ nav a {
 
 .intro-content__box p {
   color: #84828e;
+  line-height: 1.5;
 }
 
 .intro-signin__button {
@@ -438,6 +439,7 @@ nav a {
 
 .info-content__box p {
   color: #84828e;
+  line-height: 1.5;
 }
 
 .info-content__box a,
@@ -505,6 +507,7 @@ nav a {
 
 .review-sect__card p {
   color: #84828e;
+  line-height: 1.5;
 }
 
 .review-sect__box {
@@ -560,6 +563,7 @@ nav a {
 .access-sect__box p {
   margin-bottom: 20px;
   color: #84828e;
+  line-height: 1.5;
 }
 
 .access__button {
@@ -737,6 +741,9 @@ nav a {
 /*======================
       USER SUMMARY 
 =======================*/
+.user-summary__container {
+  margin-top: 4rem;
+}
 
 .block {
   padding-right: 15px;
@@ -757,6 +764,11 @@ nav a {
   padding: 2rem;
   border: 1px solid #e6eaee;
   border-radius: 1rem;
+
+  padding: 3rem;
+  /* background-color: rgba(0,0,0,.05); */
+  border: 1px solid #dcdbd8;
+  background: #a294df;
 }
 
 .user-panel__left {
@@ -768,6 +780,7 @@ nav a {
   width: 4.65rem;
   border-radius: 50%;
   margin-right: 1rem;
+  border: 2px solid #fcffff;
 }
 
 .user-panel__right {
@@ -791,17 +804,26 @@ nav a {
 .user-panel__item-top {
   font-weight: 300;
   margin-bottom: 8px;
-  color: #84828e;
+  /* color: #84828e; */
+  color: #fcffff;
+  letter-spacing: 0.05em;
 }
 
 .user-panel__item-bottom {
-  font-size: 2rem;
+  /* font-size: 2rem;
   font-weight: 500;
-  color: #070439;
+  color: #070439; */
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #88e2be;
+  letter-spacing: 0.05em;
+  /* color: #7c70d4; */
 }
 
 .user-panel__user-name {
-  color: #070439;
+  /* color: #070439; */
+  font-size: 1.4rem;
+  color: #fcffff;
   padding-left: 1rem;
   display: inline;
 }
@@ -869,6 +891,7 @@ i.icon.close {
 
 .user-summary__analysis {
   color: #84828e;
+  line-height: 1.6;
 }
 
 .user-summary-hide {
@@ -885,10 +908,6 @@ i.icon.close {
 .fade-data:after {
   content: '';
   clear: both;
-}
-
-.user-panel__item {
-  padding: 0 1rem;
 }
 
 .user-summary__cards-box {
@@ -951,6 +970,9 @@ i.icon.close {
 
 .user-habit__goals-title {
   font-size: inherit;
+  /* color: #323233; */
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
 }
 
 form div {
@@ -997,6 +1019,20 @@ form div {
   padding-right: 6rem;
 }
 
+.user-goals__incompleted-title {
+  font-size: 1.5rem;
+  color: #f07072;
+}
+
+.user-goals__completed-title {
+  font-size: 1.5rem;
+  color: #68caab;
+}
+
+.user-goals__empty {
+  font-size: 1.2rem;
+}
+
 .checkbox {
   padding: 0.5rem 0;
 }
@@ -1007,6 +1043,7 @@ form div {
 
 .checkbox label {
   margin: 0.5rem 0;
+  color: #84828e;
 }
 
 .checkbox label:after {
@@ -1031,7 +1068,7 @@ form div {
   font-size: 0.8em;
   line-height: 0;
   top: 50%;
-  left: 15%;
+  left: 10%;
 }
 
 .checkbox label input[type='checkbox'] {
@@ -1055,7 +1092,7 @@ i.icon {
 }
 
 i.icon.check:before {
-  color: #e47194;
+  color: black;
 }
 
 /* =================================================== */
