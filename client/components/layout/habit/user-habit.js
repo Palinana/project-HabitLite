@@ -80,7 +80,7 @@ class UserHabit extends Component {
             <div className="user-habit__goals">
               <div className="user-habit__goals-box">
                 <h5 className="user-habit__goals-title">Your daily goals</h5>
-                <form className="form-inline mb-3" onSubmit={this.handleSubmit}>
+                <form className="form-inline mb-5" onSubmit={this.handleSubmit}>
                   <div className="form-group user-habit__goal-form">
                     <input
                       type="text"
@@ -105,7 +105,9 @@ class UserHabit extends Component {
                 </form>
 
                 <div className="user-goals__incompleted">
-                  <h5>Incompleted: </h5>
+                  <h5 className="user-goals__incompleted-title">
+                    Incompleted:{' '}
+                  </h5>
                   {incompletedGoals.length ? (
                     incompletedGoals.map(goal => (
                       <div className="checkbox" key={goal.goal.id}>
@@ -128,14 +130,14 @@ class UserHabit extends Component {
                       </div>
                     ))
                   ) : (
-                    <h5>Nothing to complete</h5>
+                    <h5 className="user-goals__empty">Nothing to complete</h5>
                   )}
                 </div>
               </div>
 
               <div className="user-habit__goals-box mt-5">
                 <div className="user-goals__completed">
-                  <h5>Completed: </h5>
+                  <h5 className="user-goals__completed-title">Completed: </h5>
                   {completedGoals.length ? (
                     completedGoals.map(goal => (
                       <div className="checkbox" key={goal.goal.id}>
@@ -159,7 +161,9 @@ class UserHabit extends Component {
                       </div>
                     ))
                   ) : (
-                    <h5>You haven't completed daily goals yet</h5>
+                    <h5 className="user-goals__empty">
+                      You haven't completed daily goals yet
+                    </h5>
                   )}
                 </div>
               </div>
