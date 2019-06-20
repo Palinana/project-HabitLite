@@ -35,7 +35,6 @@ class PersonalityQuiz extends Component {
 
     return (
       <div>
-        <Navigation />
         <div className="container top-margin">
           <h1 className="form__title">
             Fill out the quiz to personalize your motivator!

@@ -6,15 +6,15 @@ const UserHabit = require('./userHabit')
 const Goal = require('./goal')
 const UserGoal = require('./userGoal')
 
+let goalsProgress = 0
+let currentCheckedGoals = 0
+
 const stat = name => ({
   type: Sequelize.VIRTUAL,
   get() {
     return this.stats[name]
   }
 })
-
-let goalsProgress = 0
-let currentCheckedGoals = 0
 
 const User = db.define('user', {
   email: {
@@ -77,8 +77,20 @@ User.prototype.addXP = async function(habitId, by) {
   } else if (currentCheckedGoals === totalNumberGoals) {
     goalsProgress = 100
   } else if (currentCheckedGoals < totalNumberGoals) {
-    if (by === 1) currentCheckedGoals = +by
-    else currentCheckedGoals = by
+    if (by === 1) {
+      if (goalsProgress !== 100) {
+        currentCheckedGoals = +by
+      } else {
+        goalsProgress = 100
+      }
+    } else {
+      currentCheckedGoals = by
+
+      // if (goalsProgress !== 0){
+      //   currentCheckedGoals = by
+      // }
+      // goalsProgress = 0
+    }
     goalsProgress += currentCheckedGoals / totalNumberGoals * 100
   }
 
@@ -119,13 +131,20 @@ User.prototype.getGoalsNumber = function(habitId) {
 }
 
 User.prototype.getLevel = async function() {
+  // if(isNaN(await this.getXP())) {
+  //   return levelForXP(0)
+  // }
   return levelForXP(await this.getXP())
 }
 
 User.prototype.getProgress = async function() {
+  if (isNaN(await this.getXP())) {
+    return [0, goalsProgress]
+  }
+
   const currXP = await this.getXP()
   const level = levelForXP(currXP)
-  const {maxXP} = LEVELS[level]
+  const maxXP = LEVELS[level]
   const {maxXP: lastMaxXP} = LEVELS[level - 1] || {maxXP: 0}
   // console.log('lastMaxXP ', lastMaxXP)
   // console.log('currXP ', currXP)
@@ -167,14 +186,19 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+User.beforeBulkCreate(users => {
+  users.forEach(setSaltAndPassword)
+})
 
-User.afterFind('updateStats', async user =>
-  Object.assign(user, {
+User.afterFind('updateStats', async user => {
+  console.log('await user.getProgress() ', await user.getProgress())
+  return Object.assign(user, {
     stats: {
-      progress: await user.getProgress(),
-      level: await user.getLevel(),
-      xp: await user.getXP(),
-      hp: await user.getHP()
+      progress:
+        (await user.getProgress()) !== null ? await user.getProgress() : [0, 0],
+      level: (await user.getLevel()) < 0 ? 0 : await user.getLevel(),
+      xp: !isNaN(await user.getXP()) ? await user.getXP() : 0,
+      hp: !isNaN(await user.getHP()) ? await user.getHP() : 50
     }
   })
-)
+})
