@@ -7,13 +7,14 @@ router.get('/', async (req, res, next) => {
     const users = await User.findAll({
       attributes: ['id', 'email']
     })
+    console.log('users ', users)
     res.json(users)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
       if (user === null) {

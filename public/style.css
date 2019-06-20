@@ -316,11 +316,11 @@ nav a {
   border-radius: 3rem;
   text-shadow: none;
   text-align: center;
-  border: 2px solid #bcbaf9;
+  border: 2px solid #80d6ac;
 }
 
 .navbar__login-button:hover {
-  background: #bcbaf9;
+  background: #80d6ac;
   color: white;
 }
 
@@ -891,7 +891,7 @@ i.icon.close {
 .user-summary__data {
   flex-direction: column;
   background: #ffffff;
-  padding: 2rem;
+  padding: 3rem;
   margin: 1.5rem 0;
   border: 1px solid #e6eaee;
   margin-bottom: 1.5rem;
@@ -900,7 +900,7 @@ i.icon.close {
 
 .user-summary__analysis {
   color: #84828e;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .user-summary-hide {
