@@ -13,7 +13,9 @@ class UserHome extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fade: false
+      fadeSummary: false,
+      fadeForm: false,
+      name: ''
     }
   }
 
@@ -21,6 +23,18 @@ class UserHome extends Component {
     const userId = this.props.user.id || this.props.match.params.id
     this.props.getUserPersonality(userId)
     this.props.getUserHabits(userId)
+  }
+
+  handleChange = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    const name = this.state.name
+    const userId = this.props.match.params.id
+    this.props.postNewHabit(userId, {name})
+    this.setState({name: ''})
   }
 
   render() {
@@ -35,27 +49,100 @@ class UserHome extends Component {
         </div>
 
         <div className="block">
-          <div className={this.state.fade ? 'fade-button' : 'user-summary'}>
+          <div
+            className={
+              this.state.fadeSummary && this.state.fadeForm
+                ? 'fade-button'
+                : 'user-summary'
+            }
+          >
             <div className="user-summary_button-box">
               <button
-                onClick={() => this.setState({fade: true})}
-                className="user-summary_button-summary"
+                onClick={() => this.setState({fadeSummary: true})}
+                // className="user-summary_button-summary"
+                className={
+                  this.state.fadeSummary
+                    ? 'fade-button'
+                    : 'user-summary_button-summary'
+                }
               >
                 See summary
+              </button>
+
+              <button
+                onClick={() => this.setState({fadeForm: true})}
+                className={
+                  this.state.fadeForm
+                    ? 'fade-button'
+                    : 'user-summary_button-habit'
+                }
+              >
+                Add habit
               </button>
             </div>
           </div>
 
-          <div className={this.state.fade ? 'fade-data' : 'user-summary-hide'}>
+          {/* add form block === */}
+          <div className={this.state.fadeForm ? 'fade-data' : 'user-form-hide'}>
             <div
-              className={this.state.fade ? 'user-summary__data' : 'fade-button'}
+              className={
+                this.state.fadeForm ? 'user-form__data' : 'fade-button'
+              }
+            >
+              <div className="user-form__close">
+                <Icon
+                  name="close"
+                  onClick={() => this.setState({fadeForm: false})}
+                  className="user-form__close-button"
+                />
+              </div>
+
+              <form className="form-inline" onSubmit={this.handleSubmit}>
+                <div
+                  className="form-group user-habit__goal-form"
+                  id="add-habit__form"
+                >
+                  <input
+                    type="text"
+                    className="form-control user-habit__input"
+                    placeholder="Add new daily goal"
+                    aria-label="Add new daily goal"
+                    aria-describedby="basic-addon2"
+                    name="name"
+                    onChange={this.handleChange}
+                    value={this.state.name}
+                  />
+                </div>
+                <div className="form-group">
+                  <button
+                    className="btn btn-outline-secondary input-group-text"
+                    type="submit"
+                    id="user-habit__btn"
+                  >
+                    <Icon name="plus" className="plus-icon" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* user summary block === */}
+          <div
+            className={
+              this.state.fadeSummary ? 'fade-data' : 'user-summary-hide'
+            }
+          >
+            <div
+              className={
+                this.state.fadeSummary ? 'user-summary__data' : 'fade-button'
+              }
             >
               <div className="user-summary__top">
                 <h2 className="user-summary__title">Your summary</h2>
                 <div className="user-summary__close">
                   <Icon
                     name="close"
-                    onClick={() => this.setState({fade: false})}
+                    onClick={() => this.setState({fadeSummary: false})}
                     className="user-summary__close-button"
                   />
                 </div>
@@ -82,10 +169,9 @@ class UserHome extends Component {
 }
 
 const mapState = state => {
-  console.log('state ', state)
   return {
     email: state.user.email,
-    habits: state.habits,
+    habits: state.habits || '',
     user: state.user,
     userId: state.user.id,
     personality: state.personality || ''
@@ -97,7 +183,7 @@ const mapDispatch = dispatch => {
     getUserHabits: userId => {
       dispatch(fetchUserHabits(userId))
     },
-    postNewHabits: (userId, name) => {
+    postNewHabit: (userId, name) => {
       dispatch(postHabit(userId, name))
     },
     getUserPersonality: userId => {
