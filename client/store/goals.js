@@ -33,7 +33,6 @@ export const postGoal = (userId, habitId, goal) => {
     return axios
       .post(`/api/goals/${userId}/${habitId}`, goal)
       .then(res => {
-        console.log('Getting goals', res.data)
         return res.data
       })
       .then(newGoal => {

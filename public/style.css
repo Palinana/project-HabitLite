@@ -863,6 +863,29 @@ nav a {
   color: #ffffff;
 }
 
+.user-summary_button-habit {
+  padding: 1.3rem 2.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+  border-radius: 3rem;
+  width: 13%;
+  background: #58c6de;
+  color: #ffffff;
+  text-shadow: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.user-summary_button-habit:hover {
+  background: #4eb7ce;
+  color: #ffffff;
+}
+
+#add-habit__form {
+  width: 93%;
+}
+
 .fade-button {
   display: none;
 }
@@ -880,7 +903,8 @@ nav a {
   font-size: 1.7rem;
 }
 
-.user-summary__close {
+.user-summary__close,
+.user-form__close {
   margin-left: auto;
 }
 
@@ -888,7 +912,8 @@ i.icon.close {
   color: darkgrey;
 }
 
-.user-summary__data {
+.user-summary__data,
+.user-form__data {
   flex-direction: column;
   background: #ffffff;
   padding: 3rem;
@@ -903,7 +928,8 @@ i.icon.close {
   line-height: 1.5;
 }
 
-.user-summary-hide {
+.user-summary-hide,
+.user-form-hide {
   transition: height 500ms 500ms, opacity 500ms 0ms;
   opacity: 0;
   height: 0px;
@@ -958,18 +984,10 @@ i.icon.close {
 .user-habit__box {
   display: flex;
   justify-content: space-between;
-  /* padding-right: 15px; */
-  /* padding-left: 15px; */
   margin-top: 2rem;
-  /* background: #ffffff; */
-  /* padding: 2rem; */
-  /* border: 1px solid #e6eaee; */
-  /* border-radius: 1rem; */
 }
 
 .user-habit__progress {
-  /* flex-basis: 35%;
-  order: 1; */
   flex-basis: 42%;
   order: 1;
   background: #ffffff;
@@ -985,8 +1003,6 @@ i.icon.close {
 }
 
 .user-habit__goals {
-  /* flex-basis: 55%;
-  order: 2; */
   flex-basis: 56%;
   order: 2;
   background: #ffffff;
@@ -1028,6 +1044,8 @@ form div {
   padding: rem 2.5rem;
   border-radius: 3rem;
   border: none;
+  background: #58c6de;
+  color: white;
 }
 
 .input-group-append {
@@ -1334,6 +1352,10 @@ i.icon.check:before {
     padding: 1.5rem;
   }
 
+  #add-habit__form {
+    width: 81%;
+  }
+
   .user-summary_button-summary {
     width: 50%;
     opacity: 1;
@@ -1549,6 +1571,10 @@ i.icon.check:before {
     width: 35%;
   }
 
+  #add-habit__form {
+    width: 83%;
+  }
+
   .user-summary__cards-box {
     /* margin: 0 0.5em; */
   }
@@ -1620,6 +1646,10 @@ i.icon.check:before {
     width: 25%;
   }
 
+  #add-habit__form {
+    width: 89%;
+  }
+
   .user-summary__card-title,
   .user-summary__title {
     font-size: 1.4rem;
@@ -1667,6 +1697,10 @@ i.icon.check:before {
 
   .user-summary_button-summary {
     width: 20%;
+  }
+
+  #add-habit__form {
+    width: 92%;
   }
 
   /* DAILY GOALS PAGE */

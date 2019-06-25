@@ -23,9 +23,9 @@ router.post('/:userId', (req, res, next) => {
       UserHabit.create(
         {
           habitId: Number(habit.id),
-          userId: req.body.userId,
-          XP: 5,
-          HP: 100
+          userId: req.params.userId,
+          XP: 0,
+          HP: 10
         },
         {
           include: [
@@ -40,7 +40,7 @@ router.post('/:userId', (req, res, next) => {
       const {habitId} = newUserHabit
       return UserHabit.findOne({
         where: {
-          userId: req.body.userId,
+          userId: req.params.userId,
           habitId
         },
         include: [
