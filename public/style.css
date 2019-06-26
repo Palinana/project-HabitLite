@@ -1045,7 +1045,8 @@ form div {
 
 .user-goals__incompleted,
 .user-goals__completed {
-  padding-right: 6rem;
+  /* padding-right: 6rem; */
+  padding-right: 2rem;
 }
 
 .user-goals__incompleted-title {
@@ -1062,17 +1063,27 @@ form div {
   font-size: 1.2rem;
 }
 
+.checkbox-box {
+  display: flex;
+}
+
 .checkbox {
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
+  flex-grow: 1;
+  flex-basis: 50%;
+  padding-right: 3rem;
 }
 
 .checkbox:not(:last-child) {
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
 }
 
 .checkbox label {
   margin: 0.5rem 0;
   color: #84828e;
+
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
 }
 
 .checkbox label:after {
@@ -1098,6 +1109,19 @@ form div {
   line-height: 0;
   top: 50%;
   left: 10%;
+}
+
+.checkbox-delete {
+  align-self: center;
+  padding-bottom: 1rem;
+}
+
+.checkbox-delete .delete-icon {
+  color: #cdcdcec7;
+}
+
+.checkbox-delete .delete-icon:hover {
+  color: #d41515c7;
 }
 
 .checkbox label input[type='checkbox'] {
