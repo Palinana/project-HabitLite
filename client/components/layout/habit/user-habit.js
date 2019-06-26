@@ -56,13 +56,10 @@ class UserHabit extends Component {
 
   render() {
     const habit = this.props.location.state.habit
-    // const userId = this.props.location.state.userId
     const {goals} = this.props
 
     let completedGoals = goals.filter(goal => goal.complete === true)
     let incompletedGoals = goals.filter(goal => goal.complete === false)
-    // console.log('completedGoals ', completedGoals)
-    // console.log('incompletedGoals ', incompletedGoals)
 
     return (
       <div className="container">
@@ -176,7 +173,6 @@ class UserHabit extends Component {
 }
 
 const mapState = state => {
-  // console.log('state => ', state)
   return {
     goals: state.goals
   }
@@ -209,5 +205,5 @@ const mapDispatch = dispatch => {
 export default connect(mapState, mapDispatch)(UserHabit)
 
 UserHabit.propTypes = {
-  user: PropTypes.object
+  goals: PropTypes.array
 }
