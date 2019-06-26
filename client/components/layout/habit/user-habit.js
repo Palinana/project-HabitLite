@@ -6,7 +6,13 @@ import UserPanel from '../summary/user-panel'
 import GoalProgress from '../../ui/goal-progress'
 import {Icon} from 'semantic-ui-react'
 
-import {fetchUserGoals, postGoal, updateGoal, updateUser} from '../../../store'
+import {
+  fetchUserGoals,
+  postGoal,
+  updateGoal,
+  updateUser,
+  deleteGoal
+} from '../../../store'
 
 class UserHabit extends Component {
   constructor(props) {
@@ -107,23 +113,35 @@ class UserHabit extends Component {
                   </h5>
                   {incompletedGoals.length ? (
                     incompletedGoals.map(goal => (
-                      <div className="checkbox" key={goal.goal.id}>
-                        <label>
-                          <input
-                            type="checkbox"
-                            onClick={this.props.update.bind(
-                              this,
-                              goal,
-                              this.props.userId,
-                              habit.id,
-                              habit.XP
-                            )}
+                      <div className="checkbox-box" key={goal.goal.id}>
+                        <div className="checkbox">
+                          <label>
+                            <input
+                              type="checkbox"
+                              onClick={this.props.update.bind(
+                                this,
+                                goal,
+                                this.props.userId,
+                                habit.id,
+                                habit.XP
+                              )}
+                            />
+                            <span className="cr">
+                              <Icon name="check" className="cr-icon" />
+                            </span>
+                            {goal.goal.description}
+                          </label>
+                        </div>
+
+                        <span
+                          className="checkbox-delete"
+                          onClick={this.props.delete.bind(this, goal)}
+                        >
+                          <Icon
+                            name="trash alternate"
+                            className="delete-icon"
                           />
-                          <span className="cr">
-                            <Icon name="check" className="cr-icon" />
-                          </span>
-                          {goal.goal.description}
-                        </label>
+                        </span>
                       </div>
                     ))
                   ) : (
@@ -137,24 +155,36 @@ class UserHabit extends Component {
                   <h5 className="user-goals__completed-title">Completed: </h5>
                   {completedGoals.length ? (
                     completedGoals.map(goal => (
-                      <div className="checkbox" key={goal.goal.id}>
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={goal.complete}
-                            onClick={this.props.update.bind(
-                              this,
-                              goal,
-                              this.props.userId,
-                              habit.id,
-                              habit.XP
-                            )}
+                      <div className="checkbox-box" key={goal.goal.id}>
+                        <div className="checkbox" key={goal.goal.id}>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={goal.complete}
+                              onClick={this.props.update.bind(
+                                this,
+                                goal,
+                                this.props.userId,
+                                habit.id,
+                                habit.XP
+                              )}
+                            />
+                            <span className="cr">
+                              <Icon name="check" className="cr-icon" />
+                            </span>
+                            {goal.goal.description}
+                          </label>
+                        </div>
+
+                        <span
+                          className="checkbox-delete"
+                          onClick={this.props.delete.bind(this, goal)}
+                        >
+                          <Icon
+                            name="trash alternate"
+                            className="delete-icon"
                           />
-                          <span className="cr">
-                            <Icon name="check" className="cr-icon" />
-                          </span>
-                          {goal.goal.description}
-                        </label>
+                        </span>
                       </div>
                     ))
                   ) : (
@@ -196,6 +226,16 @@ const mapDispatch = dispatch => {
           userGoal.goal.habitId,
           userGoal.id,
           evt.target.checked
+        )
+      )
+    },
+    delete(userGoal) {
+      dispatch(
+        deleteGoal(
+          userGoal.goal.id,
+          userGoal.id,
+          userGoal.userId,
+          userGoal.goal.habitId
         )
       )
     }

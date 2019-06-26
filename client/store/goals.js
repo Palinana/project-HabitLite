@@ -59,6 +59,23 @@ export const updateGoal = (userId, habitId, goalId, checked) => {
   }
 }
 
+export const deleteGoal = (goalId, id, userId, habitId) => {
+  return function thunk(dispatch) {
+    return axios
+      .delete(`/api/goals/${goalId}`, {data: {id}})
+      .then(() => {
+        return axios.get(`/api/goals/${userId}/${habitId}`)
+      })
+      .then(res => {
+        return res.data
+      })
+      .then(goals => {
+        dispatch(getUserGoals(goals))
+      })
+      .catch(console.error)
+  }
+}
+
 //REDUCER(S)
 export default function reducer(state = [], action) {
   switch (action.type) {

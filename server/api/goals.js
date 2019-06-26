@@ -46,10 +46,6 @@ router.get('/:userId/:habitId', (req, res, next) => {
 
 // Update checked goal to "checked" or "unchecked"
 router.put('/:goalId', async (req, res, next) => {
-  // console.log('body.habitId ', req.body.habitId)
-  // let vale = await req.user.getGoalsNumber(req.body.habitId)
-  // console.log('vale ', vale)
-
   await req.user.getGoalsNumber(req.body.habitId)
 
   UserGoal.findById(req.params.goalId)
@@ -120,5 +116,24 @@ router.post('/:userId/:habitId', (req, res, next) => {
       })
     })
     .then(indivgoal => res.status(201).json(indivgoal))
+    .catch(next)
+})
+
+router.delete('/:goalId', (req, res, next) => {
+  Goal.destroy({
+    where: {
+      id: req.params.goalId
+    }
+  })
+    .then(() => {
+      UserGoal.destroy({
+        where: {
+          id: req.body.id
+        }
+      })
+    })
+    .then(() => {
+      res.sendStatus(204)
+    })
     .catch(next)
 })
