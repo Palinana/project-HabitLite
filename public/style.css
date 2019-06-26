@@ -1,46 +1,28 @@
 /*
 Main colors: 
+#80d6ac
+#58c6de
+#7a81c5
 
-Background: #F9F8FE
-Secondary color: #dc5e85
+Background: 
+#F9F8FE
 
-dark purple: #8068b5
-light purple: #BCBAF9
-
-grey dark: #070439;
-grey light: #84828e;
-
-
-Progress colors:
+Purples:
 #696ba0; 
 #908ece;
 #cac9f3;
 
-Options for buttons:
-#f7d688
-#79c1e6
+#BCBAF9
+#8068b5
 
-
-
-#80d6ac
-
+Progress colors:
 #badac5          
 #f7ebba 
 #ef8d8d 
 
+Red colors:
+#f07072
 
-#e7e4f5
-.user-panel__item-bottom {
-    font-size: 2.8rem;
-    font-weight: 900;
-    color: #7c70d4;
-}
-.user-panel__item-top {
-    font-weight: 100;
-    margin-bottom: 8px;
-    color: #959396;  //#606061
-    font-size: 1.5rem;
-}
 
 
 */
@@ -1164,6 +1146,39 @@ i.icon.check:before {
   border-radius: 15px;
 }
 
+/*======================
+     NON FOUND PAGE
+=======================*/
+.not-found-sect__container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rem;
+}
+
+.not-found-content__box {
+  flex-basis: 45%;
+  order: 1;
+  margin: 0 1.5em;
+  align-self: center;
+}
+
+.not-found-text__heading {
+  font-size: 4rem;
+  font-family: 'Raleway';
+  font-weight: 700;
+}
+
+.not-found-img__box {
+  flex-basis: 40%;
+  order: 2;
+  margin: 0 1.5em;
+}
+
+.not-found-img__box img {
+  max-width: 100%;
+  max-height: 90%;
+}
+
 /* =================================================== */
 /* =================================================== */
 /* =================================================== */
@@ -1171,7 +1186,6 @@ i.icon.check:before {
 /* Small devices (landscape phones, 576px and up) - when screen will get to this point, use styles: */
 @media (max-width: 576px) {
   /* LANDING PAGE */
-
   .intro-sect__container {
     display: flex;
     flex-direction: column;
@@ -1397,6 +1411,32 @@ i.icon.check:before {
   .user-habit__goal-form {
     width: 83%;
   }
+
+  /* NOT FOUND PAGE */
+  .not-found-sect__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+  }
+
+  .not-found-content__box {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 4rem;
+  }
+
+  .not-found-img__box {
+    padding: 1.5rem;
+    order: 1;
+    margin: 0;
+  }
+  .not-found-img__box img {
+    width: 100%;
+  }
+
+  .not-found-text__heading {
+    margin: 2rem;
+  }
 }
 
 @media (max-width: 768px) and (min-width: 576px) {
@@ -1594,6 +1634,32 @@ i.icon.check:before {
   .user-habit__goal-form {
     width: 81%;
   }
+
+  /* NOT FOUND PAGE */
+  .not-found-sect__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+  }
+
+  .not-found-content__box {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 4rem;
+  }
+
+  .not-found-img__box {
+    padding: 1.5rem;
+    order: 1;
+    margin: 0;
+  }
+  .not-found-img__box img {
+    width: 100%;
+  }
+
+  .not-found-text__heading {
+    margin: 2rem;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1686,6 +1752,15 @@ i.icon.check:before {
 
   .user-panel__item {
     padding: 0 2.5rem;
+  }
+
+  /* NOT FOUND PAGE */
+  .not-found-content__box {
+    margin: 0;
+  }
+
+  .not-found-img__box {
+    margin: 0;
   }
 }
 
