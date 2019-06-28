@@ -1,6 +1,6 @@
 # HabitLite
 
-Personalized gamified habit tracker to help users achieve their goals.
+## Personalized gamified habit tracker to help users achieve their goals.
 
 Build with React, Redux, Express, Sequelize, Semantic UI, Bootstrap, Victory.js and IBM Watson API.
 
