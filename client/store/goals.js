@@ -59,6 +59,23 @@ export const updateGoal = (userId, habitId, goalId, checked) => {
   }
 }
 
+export const resetGoals = (userId, habitId, goalId) => {
+  return function thunk(dispatch) {
+    return axios
+      .put(`/api/goals/${userId}/${habitId}`, {goalId})
+      .then(() => {
+        return axios.get(`/api/goals/${userId}/${habitId}`)
+      })
+      .then(res => {
+        return res.data
+      })
+      .then(goals => {
+        dispatch(getUserGoals(goals))
+      })
+      .catch(console.error)
+  }
+}
+
 export const deleteGoal = (goalId, id, userId, habitId) => {
   return function thunk(dispatch) {
     return axios

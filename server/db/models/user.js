@@ -78,18 +78,17 @@ User.prototype.addXP = async function(habitId, by) {
     goalsProgress = 100
   } else if (currentCheckedGoals < totalNumberGoals) {
     if (by === 1) {
-      if (goalsProgress !== 100) {
-        currentCheckedGoals = +by
-      } else {
+      if (goalsProgress > 100 || goalsProgress === 100) {
         goalsProgress = 100
+      } else {
+        currentCheckedGoals = +by
       }
-    } else {
-      currentCheckedGoals = by
-
-      // if (goalsProgress !== 0){
-      //   currentCheckedGoals = by
-      // }
-      // goalsProgress = 0
+    } else if (by === -1) {
+      if (goalsProgress < 0 || goalsProgress === 0) {
+        goalsProgress = 0
+      } else {
+        currentCheckedGoals = by
+      }
     }
     goalsProgress += currentCheckedGoals / totalNumberGoals * 100
   }

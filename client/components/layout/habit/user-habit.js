@@ -10,6 +10,7 @@ import {
   fetchUserGoals,
   postGoal,
   updateGoal,
+  resetGoals,
   updateUser,
   deleteGoal
 } from '../../../store'
@@ -60,12 +61,21 @@ class UserHabit extends Component {
     })
   }
 
+  resetAllGoals = (userId, habitId, goals) => {
+    for (let i = 0; i < goals.length; i++) {
+      this.props.reset(userId, habitId, goals[i].id)
+    }
+  }
+
   render() {
     const habit = this.props.location.state.habit
     const {goals} = this.props
 
     let completedGoals = goals.filter(goal => goal.complete === true)
     let incompletedGoals = goals.filter(goal => goal.complete === false)
+    //reset completed goals
+    if (completedGoals.length === goals.length)
+      this.resetAllGoals(this.props.userId, habit.habitId, completedGoals)
 
     return (
       <div className="container">
@@ -204,7 +214,8 @@ class UserHabit extends Component {
 
 const mapState = state => {
   return {
-    goals: state.goals
+    goals: state.goals,
+    userId: state.user.id
   }
 }
 
@@ -228,6 +239,9 @@ const mapDispatch = dispatch => {
           evt.target.checked
         )
       )
+    },
+    reset(userId, habitId, goalId) {
+      dispatch(resetGoals(userId, habitId, goalId))
     },
     delete(userGoal) {
       dispatch(

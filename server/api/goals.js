@@ -74,6 +74,18 @@ router.put('/:goalId', async (req, res, next) => {
     .catch(next)
 })
 
+//to reset completed goals
+router.put('/:userId/:habitId', (req, res, next) => {
+  console.log('req.body ', req.body.goalId)
+  UserGoal.findById(req.body.goalId)
+    .then(goal => {
+      goal.complete = false
+      goal.save()
+    })
+    .then(goals => res.status(201).json(goals))
+    .catch(next)
+})
+
 router.post('/:userId/:habitId', (req, res, next) => {
   Goal.create({
     habitId: Number(req.params.habitId),
