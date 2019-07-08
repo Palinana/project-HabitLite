@@ -47,9 +47,6 @@ const Navigation = ({handleClick, isLoggedIn, userId}) => {
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
@@ -67,9 +64,6 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Navigation)
 
-/**
- * PROP TYPES
- */
 Navigation.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired

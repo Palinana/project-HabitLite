@@ -8,8 +8,12 @@ import Access from './layout/landing/access'
 import FooterSection from './layout/landing/footer-section'
 import Navigation from './layout/landing/navigation'
 
+const navStyle = {
+  background: '#ffffff'
+}
+
 const LandingPage = () => (
-  <div>
+  <div style={navStyle}>
     <Navigation />
     <IntroSection />
     <Curve />

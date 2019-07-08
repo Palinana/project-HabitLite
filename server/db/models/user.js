@@ -67,34 +67,62 @@ User.prototype.correctPassword = function(candidatePwd) {
 
 User.prototype.addXP = async function(habitId, by) {
   //change with every check
-  let totalNumberGoals = await this.getGoalsNumber(habitId) //total = 8
+  // let totalNumberGoals = await this.getGoalsNumber(habitId)
 
-  if (currentCheckedGoals < 0) currentCheckedGoals = 0
+  // if (goalsProgress >= 100 || goalsProgress < 0) {
+  //   goalsProgress = 0
+  // }
 
-  if (currentCheckedGoals > totalNumberGoals) {
-    currentCheckedGoals = 0
+  // if (currentCheckedGoals < 0 || currentCheckedGoals > totalNumberGoals) {
+  //   currentCheckedGoals = 0
+  //   goalsProgress = 0
+  // }
+  // else { //currentCheckedGoals < totalNumberGoals
+  //   if (by === 1) {
+  //       currentCheckedGoals = +by
+  //   }
+  //   else if (by === -1) {
+  //       currentCheckedGoals = by
+  //   }
+  //   goalsProgress = currentCheckedGoals / totalNumberGoals * 100
+  //   console.log('goalsProgress == ', goalsProgress)
+
+  //change with every check                                     WORKS!!!!!!!
+  let totalNumberGoals = await this.getGoalsNumber(habitId)
+  console.log('goalsProgress here == ', goalsProgress)
+  console.log('currentCheckedGoals == ', currentCheckedGoals)
+
+  if (goalsProgress >= 100 || goalsProgress < 0) {
     goalsProgress = 0
-  } else if (currentCheckedGoals === totalNumberGoals) {
-    goalsProgress = 100
-  } else if (currentCheckedGoals < totalNumberGoals) {
-    if (by === 1) {
-      if (goalsProgress > 100 || goalsProgress === 100) {
-        goalsProgress = 100
-      } else {
-        currentCheckedGoals = +by
-      }
-    } else if (by === -1) {
-      if (goalsProgress < 0 || goalsProgress === 0) {
-        goalsProgress = 0
-      } else {
-        currentCheckedGoals = by
-      }
-    }
-    goalsProgress += currentCheckedGoals / totalNumberGoals * 100
+    currentCheckedGoals = 0
+
+    console.log('got here == ')
+    console.log('got here goalsProgress == ', goalsProgress)
   }
 
-  // console.log('currentCheckedGoals == ', currentCheckedGoals)
-  // console.log('goalsProgress == ', goalsProgress)
+  if (currentCheckedGoals < 0 || currentCheckedGoals > totalNumberGoals) {
+    currentCheckedGoals = 0
+    goalsProgress = 0
+    console.log('got here too == ')
+    console.log('got  goalsProgress == ', goalsProgress)
+    console.log('got  currentCheckedGoals == ', currentCheckedGoals)
+  } else if (currentCheckedGoals < totalNumberGoals) {
+    //
+    if (by === 1 && goalsProgress !== 100) {
+      console.log('i am here')
+      console.log('currentCheckedGoals pre pre final == ', currentCheckedGoals)
+      currentCheckedGoals++
+    } else if (by === -1 && goalsProgress !== 0) {
+      console.log('no i am here')
+      console.log('currentCheckedGoals pre pre final == ', currentCheckedGoals)
+      currentCheckedGoals--
+    }
+    console.log('goalsProgress pre final == ', goalsProgress)
+    console.log('currentCheckedGoals pre final == ', currentCheckedGoals)
+    goalsProgress = currentCheckedGoals / totalNumberGoals * 100
+    console.log('goalsProgress == ', goalsProgress)
+  }
+
   await UserHabit.increment('XP', {
     where: {
       userId: this.id,
@@ -130,9 +158,6 @@ User.prototype.getGoalsNumber = function(habitId) {
 }
 
 User.prototype.getLevel = async function() {
-  // if(isNaN(await this.getXP())) {
-  //   return levelForXP(0)
-  // }
   return levelForXP(await this.getXP())
 }
 

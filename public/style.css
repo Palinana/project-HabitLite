@@ -4,10 +4,10 @@ Main colors:
 #58c6de
 #7a81c5
 
-Background: 
+Background colors: 
 #F9F8FE
 
-Purples:
+Purple colors:
 #696ba0; 
 #908ece;
 #cac9f3;
@@ -22,7 +22,6 @@ Progress colors:
 
 Red colors:
 #f07072
-
 
 
 */
@@ -246,10 +245,10 @@ i.icon.exclamation.circle {
       LANDING PAGE
 =======================*/
 
-.navbar {
+/* .navbar {
   /* background: #ffffff; */
-  /* box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
-}
+/* box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
+/* } */
 
 .header__container {
   display: flex;
