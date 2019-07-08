@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const {Goal, UserGoal} = require('../db/models')
+const User = require('../db/models/user')
+
 module.exports = router
 
 //Get all theCustom goals

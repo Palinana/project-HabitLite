@@ -9,11 +9,13 @@ const ADD_GOAL = 'ADD_GOAL'
 export function getUserGoals(goals) {
   return {type: GET_USER_GOALS, goals}
 }
+
 export function addGoal(goal) {
   return {type: ADD_GOAL, goal}
 }
 
 //THUNKS
+
 export const fetchUserGoals = (userId, habitId) => {
   return dispatch => {
     axios
@@ -100,7 +102,6 @@ export default function reducer(state = [], action) {
       return action.goals
     case ADD_GOAL:
       return [action.goal, ...state]
-    // return [...state, action.goal]
     default:
       return state
   }

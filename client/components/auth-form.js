@@ -6,11 +6,15 @@ import Auth from './auth'
 import {Icon} from 'semantic-ui-react'
 import Navigation from './layout/landing/navigation'
 
+const navStyle = {
+  background: '#ffffff'
+}
+
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div style={navStyle}>
       <Navigation />
       <div className="container">
         <div className="row no-gutter">
@@ -108,9 +112,6 @@ const mapDispatch = dispatch => {
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
-/**
- * PROP TYPES
- */
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
