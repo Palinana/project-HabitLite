@@ -8,7 +8,8 @@ const getData = percent => {
 }
 
 const GoalProgress = props => {
-  console.log('GoalProgress props ', props)
+  console.log('progress ', props.progress)
+
   return (
     <div className="chart">
       {props.levelledUp ? (
@@ -22,7 +23,7 @@ const GoalProgress = props => {
           animate={{duration: 1000}}
           width={400}
           height={400}
-          data={getData(props.goalProgress)}
+          data={getData(props.progress)} //for progress bar %
           innerRadius={props.category ? 0 : 120}
           cornerRadius={25}
           labels={() => null}
@@ -52,7 +53,7 @@ const GoalProgress = props => {
                 verticalAnchor="middle"
                 x={200}
                 y={200}
-                text={`${Math.round(props.goalProgress)}%`}
+                text={`${Math.round(props.progress)}%`} //the actual data of the progress bar
                 style={{fontSize: 45}}
               />
             )
@@ -67,7 +68,6 @@ const mapState = state => {
   return {
     goals: state.user.goals,
     xp: state.user.xp,
-    goalProgress: state.user.progress[1],
     levelledUp: state.user.levelledUp,
     level: state.user.level
   }

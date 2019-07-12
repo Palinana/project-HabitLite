@@ -15,7 +15,7 @@ const NotFound = () => {
       </div>
 
       <div className="not-found-img__box">
-        <img src="images/illustration-4.svg" alt="Files Image" />
+        <img src="/images/illustration-4.svg" alt="Files Image" />
       </div>
     </div>
   )

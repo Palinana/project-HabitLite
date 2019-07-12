@@ -47,7 +47,6 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     dispatch(getUser(res.data, false))
     let userId = res.data.id
-    // console.log('res.data ', res.data)
     if (method === 'login') {
       history.push(`/home/users/${userId}`)
     } else {
@@ -77,10 +76,10 @@ export const fetchUserById = id => async dispatch => {
   }
 }
 
-export const updateUser = (habitId, incrXP = 0, HP = 0) => {
+export const updateUser = (habitId, incrXP = 0, id, userId) => {
   return dispatch => {
     axios
-      .put('/api/xp', {habitId, incrXP})
+      .put('/api/xp', {habitId, incrXP, id, userId})
       .then(res => {
         dispatch(getUser(res.data.user, res.data.levelledUp))
       })

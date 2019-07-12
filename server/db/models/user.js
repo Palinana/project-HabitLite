@@ -6,8 +6,8 @@ const UserHabit = require('./userHabit')
 const Goal = require('./goal')
 const UserGoal = require('./userGoal')
 
-let goalsProgress = 0
-let currentCheckedGoals = 0
+let globalGoalProgress = 0
+let checkedGoals = 0
 
 const stat = name => ({
   type: Sequelize.VIRTUAL,
@@ -33,7 +33,7 @@ const User = db.define('user', {
     defaultValue:
       'https://34yigttpdc638c2g11fbif92-wpengine.netdna-ssl.com/wp-content/uploads/2016/09/default-user-img.jpg'
   },
-  progress: stat('progress'),
+  // progress: stat('progress'),
   level: stat('level'),
   xp: stat('xp'),
   hp: stat('hp'),
@@ -65,64 +65,121 @@ User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 
-User.prototype.addXP = async function(habitId, by) {
-  //change with every check
-  // let totalNumberGoals = await this.getGoalsNumber(habitId)
+User.prototype.addXP = async function(habitId, by, id) {
+  //finds all habits
+  let userHabitTableResults = await UserHabit.findAll({
+    attributes: ['id', 'progress', 'checkedGoals', 'habitId'],
+    raw: true
+  })
 
-  // if (goalsProgress >= 100 || goalsProgress < 0) {
-  //   goalsProgress = 0
-  // }
+  //current user habit data
+  let userHabitData = userHabitTableResults.find(data => data.id === id)
 
-  // if (currentCheckedGoals < 0 || currentCheckedGoals > totalNumberGoals) {
-  //   currentCheckedGoals = 0
-  //   goalsProgress = 0
-  // }
-  // else { //currentCheckedGoals < totalNumberGoals
-  //   if (by === 1) {
-  //       currentCheckedGoals = +by
-  //   }
-  //   else if (by === -1) {
-  //       currentCheckedGoals = by
-  //   }
-  //   goalsProgress = currentCheckedGoals / totalNumberGoals * 100
-  //   console.log('goalsProgress == ', goalsProgress)
+  //current progress of a user
+  let goalsProgress = userHabitData.progress
 
-  //change with every check                                     WORKS!!!!!!!
+  //current goals that a user checked so far
+  let currentlyCheckedGoals = userHabitData.checkedGoals
+
+  //total number of goals for current habit
   let totalNumberGoals = await this.getGoalsNumber(habitId)
-  console.log('goalsProgress here == ', goalsProgress)
-  console.log('currentCheckedGoals == ', currentCheckedGoals)
+  let newGoalProgress
 
-  if (goalsProgress >= 100 || goalsProgress < 0) {
-    goalsProgress = 0
-    currentCheckedGoals = 0
-
-    console.log('got here == ')
-    console.log('got here goalsProgress == ', goalsProgress)
+  if (
+    goalsProgress >= 100 ||
+    goalsProgress < 0 ||
+    currentlyCheckedGoals < 0 ||
+    currentlyCheckedGoals > totalNumberGoals
+  ) {
+    //resetting progress to zero
+    await UserHabit.update(
+      {
+        progress: 0
+      },
+      {
+        where: {
+          userId: this.id,
+          id
+        }
+      }
+    )
+    //resetting checked goals to zero
+    await UserHabit.update(
+      {
+        checkedGoals: 0
+      },
+      {
+        where: {
+          userId: this.id,
+          id
+        }
+      }
+    )
   }
 
-  if (currentCheckedGoals < 0 || currentCheckedGoals > totalNumberGoals) {
-    currentCheckedGoals = 0
-    goalsProgress = 0
-    console.log('got here too == ')
-    console.log('got  goalsProgress == ', goalsProgress)
-    console.log('got  currentCheckedGoals == ', currentCheckedGoals)
-  } else if (currentCheckedGoals < totalNumberGoals) {
-    //
+  //getting updated data from the table
+  userHabitTableResults = await UserHabit.findAll({
+    attributes: ['id', 'progress', 'checkedGoals', 'habitId'],
+    raw: true
+  })
+  //current user habit data
+  userHabitData = userHabitTableResults.find(data => data.id === id)
+  //current goals after update
+  currentlyCheckedGoals = userHabitData.checkedGoals
+  //current progress of a user
+  goalsProgress = userHabitData.progress
+
+  if (currentlyCheckedGoals < totalNumberGoals) {
     if (by === 1 && goalsProgress !== 100) {
-      console.log('i am here')
-      console.log('currentCheckedGoals pre pre final == ', currentCheckedGoals)
-      currentCheckedGoals++
+      //move table update here !!!!
+      //updating checkedGoals
+      await UserHabit.increment('checkedGoals', {
+        where: {
+          userId: this.id,
+          habitId
+        },
+        by
+      })
     } else if (by === -1 && goalsProgress !== 0) {
-      console.log('no i am here')
-      console.log('currentCheckedGoals pre pre final == ', currentCheckedGoals)
-      currentCheckedGoals--
+      //updating checkedGoals
+      await UserHabit.increment('checkedGoals', {
+        where: {
+          userId: this.id,
+          habitId
+        },
+        by
+      })
     }
-    console.log('goalsProgress pre final == ', goalsProgress)
-    console.log('currentCheckedGoals pre final == ', currentCheckedGoals)
-    goalsProgress = currentCheckedGoals / totalNumberGoals * 100
-    console.log('goalsProgress == ', goalsProgress)
+
+    //getting updated data from the table after changing checked goals
+    userHabitTableResults = await UserHabit.findAll({
+      attributes: ['id', 'progress', 'checkedGoals', 'habitId'],
+      raw: true
+    })
+    //current user habit data
+    userHabitData = userHabitTableResults.find(data => data.id === id)
+    //current goals after update
+    currentlyCheckedGoals = userHabitData.checkedGoals
+
+    //calculating the new progress
+    newGoalProgress = currentlyCheckedGoals / totalNumberGoals * 100
+    console.log('newGoalProgress ', newGoalProgress)
+
+    //updating progress for a habit
+    await UserHabit.update(
+      {
+        progress: newGoalProgress
+      },
+      {
+        where: {
+          userId: this.id,
+          id
+        }
+      }
+    )
   }
 
+  //updating XP
   await UserHabit.increment('XP', {
     where: {
       userId: this.id,
@@ -130,7 +187,8 @@ User.prototype.addXP = async function(habitId, by) {
     },
     by
   })
-  return goalsProgress
+
+  return newGoalProgress
 }
 
 User.prototype.getXP = function() {
@@ -160,28 +218,6 @@ User.prototype.getGoalsNumber = function(habitId) {
 User.prototype.getLevel = async function() {
   return levelForXP(await this.getXP())
 }
-
-User.prototype.getProgress = async function() {
-  if (isNaN(await this.getXP())) {
-    return [0, goalsProgress]
-  }
-
-  const currXP = await this.getXP()
-  const level = levelForXP(currXP)
-  const maxXP = LEVELS[level]
-  const {maxXP: lastMaxXP} = LEVELS[level - 1] || {maxXP: 0}
-  // console.log('lastMaxXP ', lastMaxXP)
-  // console.log('currXP ', currXP)
-  // console.log('maxXP ', maxXP)
-  // console.log('goalsProgress ', goalsProgress)
-
-  // return (currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100
-  return [(currXP - lastMaxXP) / (maxXP - lastMaxXP) * 100, goalsProgress]
-}
-
-// User.prototype.getGoalsProgress = function() {
-//   return goalsProgress;
-// }
 
 /**
  * classMethods
@@ -215,11 +251,8 @@ User.beforeBulkCreate(users => {
 })
 
 User.afterFind('updateStats', async user => {
-  console.log('await user.getProgress() ', await user.getProgress())
   return Object.assign(user, {
     stats: {
-      progress:
-        (await user.getProgress()) !== null ? await user.getProgress() : [0, 0],
       level: (await user.getLevel()) < 0 ? 0 : await user.getLevel(),
       xp: !isNaN(await user.getXP()) ? await user.getXP() : 0,
       hp: !isNaN(await user.getHP()) ? await user.getHP() : 50

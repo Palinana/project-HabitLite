@@ -17,6 +17,23 @@ const UserHabit = db.define('userHabit', {
       notEmpty: true,
       min: 0
     }
+  },
+  progress: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      notEmpty: true,
+      min: 0,
+      max: 100
+    }
+  },
+  checkedGoals: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      notEmpty: true,
+      min: 0
+    }
   }
 })
 
