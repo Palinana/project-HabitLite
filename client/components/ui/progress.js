@@ -67,8 +67,6 @@ const mapState = (state, ownProps) => {
   if (ownProps.habit) {
     progress = state.user.xp ? state.user.xp / ownProps.habit.XP * 10 : 0
     if (progress > 100) progress = 100
-  } else {
-    progress = state.user.progress[0]
   }
 
   return {

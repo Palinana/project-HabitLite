@@ -6,8 +6,9 @@ import user from './user'
 import personality from './personality'
 import habits from './habits'
 import goals from './goals'
+import progress from './progress'
 
-const reducer = combineReducers({user, personality, habits, goals})
+const reducer = combineReducers({user, personality, habits, goals, progress})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -18,3 +19,4 @@ export * from './user'
 export * from './personality'
 export * from './habits'
 export * from './goals'
+export * from './progress'
