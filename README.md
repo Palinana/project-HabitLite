@@ -19,6 +19,8 @@ Build with React, Redux, Express, Sequelize, Semantic UI, Bootstrap, Victory.js 
 
 <br/>
 
+<br/>
+<br/>
 
 ![image](https://user-images.githubusercontent.com/26104823/59642845-9e334d80-9134-11e9-9a18-5a050ecc0a83.png)
 <br/>
