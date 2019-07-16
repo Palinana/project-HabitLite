@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import UserPanel from '../summary/user-panel'
 import GoalProgress from '../../ui/goal-progress'
+import ActivityChart from '../../ui/activity-chart'
 import {Icon} from 'semantic-ui-react'
 
 import {
@@ -214,12 +215,20 @@ class UserHabit extends Component {
             </div>
           </div>
         </div>
+
+        <div className="block">
+          <div className="user-activity--month__box">
+            <div>Current month activity</div>
+            <ActivityChart goals={goals.length} />
+          </div>
+        </div>
       </div>
     )
   }
 }
+
 const mapState = state => {
-  console.log('state ', state)
+  // console.log('state ', state)
   return {
     goals: state.goals,
     userId: state.user.id,

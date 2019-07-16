@@ -10,11 +10,6 @@ const getData = percent => {
 const Progress = props => {
   return (
     <div className="chart">
-      {props.levelledUp ? (
-        <div className="level-up">Level {props.level}!</div>
-      ) : (
-        <div />
-      )}
       <svg viewBox="0 0 400 400" width="100%" height="100%">
         <VictoryPie
           standalone={false}

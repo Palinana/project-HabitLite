@@ -7,7 +7,8 @@ import {Icon} from 'semantic-ui-react'
 import Navigation from './layout/landing/navigation'
 
 const navStyle = {
-  background: '#ffffff'
+  background: '#ffffff',
+  height: '100vh'
 }
 
 const AuthForm = props => {
