@@ -244,12 +244,6 @@ i.icon.exclamation.circle {
 /*======================
       LANDING PAGE
 =======================*/
-
-/* .navbar {
-  /* background: #ffffff; */
-/* box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
-/* } */
-
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -719,6 +713,10 @@ nav a {
   border: none;
 }
 
+.form__button:hover {
+  background: #76c5ad;
+}
+
 /*======================
       USER SUMMARY 
 =======================*/
@@ -735,21 +733,12 @@ nav a {
   display: flex;
   align-items: center;
   align-self: stretch;
-  /* margin: 0 1.5em; */
-  /* width: 90%;
-  margin: 0 auto; */
-  /* background: #ffffff;
-  padding: 2rem;
-  box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.1); */
   background: #ffffff;
   padding: 2rem;
   border: 1px solid #e6eaee;
   border-radius: 1rem;
-
   padding: 3.5rem;
-  /* background-color: rgba(0,0,0,.05); */
   border: 1px solid #dcdbd8;
-  /* background: #a294df; */
   background: #7a81c5;
 }
 
@@ -758,8 +747,6 @@ nav a {
 }
 
 .user-panel__user-image {
-  /* height: 4.75rem;
-  width: 4.65rem; */
   height: 5.75rem;
   width: 5.65rem;
   border-radius: 50%;
@@ -794,24 +781,18 @@ nav a {
 .user-panel__item-top {
   font-weight: 300;
   margin-bottom: 8px;
-  /* color: #84828e; */
   color: #fcffff;
   letter-spacing: 0.05em;
 }
 
 .user-panel__item-bottom {
-  /* font-size: 2rem;
-  font-weight: 500;
-  color: #070439; */
   font-size: 2.8rem;
   font-weight: 900;
   color: #88e2be;
   letter-spacing: 0.05em;
-  /* color: #7c70d4; */
 }
 
 .user-panel__user-name {
-  /* color: #070439; */
   font-size: 1.4rem;
   color: #fcffff;
   padding-left: 1rem;
@@ -951,6 +932,10 @@ i.icon.close {
   padding: 3.5rem;
 }
 
+.user-summary__no-cards {
+  margin: 0 auto;
+}
+
 /*======================
         PROGRESS
 =======================*/
@@ -996,7 +981,6 @@ i.icon.close {
 
 .user-habit__goals-title {
   font-size: inherit;
-  /* color: #323233; */
   font-size: 1.7rem;
   margin-bottom: 2rem;
 }
@@ -1066,14 +1050,9 @@ form div {
 }
 
 .checkbox {
-  /* padding: 0.5rem 0; */
   flex-grow: 1;
   flex-basis: 50%;
   padding-right: 3rem;
-}
-
-.checkbox:not(:last-child) {
-  /* border-bottom: 1px solid #eee; */
 }
 
 .checkbox label {
@@ -1146,26 +1125,96 @@ i.icon.check:before {
   color: black;
 }
 
-.popup {
+.level-up__box {
+  animation: hide-animation 4s ease-in 0s;
+  visibility: hidden;
   position: fixed;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100000;
 }
-.popup-inner {
+
+.level-up__wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  padding: 8rem;
-  border-radius: 15px;
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  width: 35rem;
+  padding: 6rem;
+  border-radius: 0.5rem;
+}
+
+@keyframes hide-animation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.level-up__title {
+  color: #58c6de;
+  font-size: 2.5rem !important;
+}
+
+.level-up__subtitle {
+  color: #7981c5;
+  font-size: 2rem !important;
+  margin-top: 0.8rem;
+}
+
+.level-up__level {
+  color: #bcbaf9;
+  margin-top: 1.5rem;
+  font-size: 5rem !important;
+}
+
+/*======================
+     USER ACITIVITY
+=======================*/
+.user-activity--month__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  padding: 3.5rem;
+  padding-right: 15px;
+  padding-left: 0px;
+  border: 1px solid #e6eaee;
+}
+
+.user-activity--month__box div {
+  font-size: 1.7rem;
+  margin-bottom: 2.5rem;
+}
+
+.custom-tooltip {
+  padding: 10px;
+}
+
+.recharts-responsive-container {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 400px;
 }
 
 /*======================
@@ -1362,9 +1411,6 @@ i.icon.check:before {
   }
 
   /* USER SUMMARY */
-  .user-panel__box {
-    /* margin: 0 1.5em; */
-  }
   .user-panel__left {
     display: flex;
     flex-direction: column;
@@ -1374,7 +1420,6 @@ i.icon.check:before {
     padding: 0 2rem;
   }
 
-  /* USER SUMMARY */
   .user-panel__user-name {
     display: none;
   }
@@ -1382,10 +1427,8 @@ i.icon.check:before {
   .user-summary_button-box {
     display: flex;
     align-self: stretch;
-    flex-direction: column;
-    width: 90%;
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
   }
 
   #add-habit__form {
@@ -1394,7 +1437,11 @@ i.icon.check:before {
 
   .user-summary_button-summary {
     width: 50%;
-    opacity: 1;
+    transition: height 500ms 0ms, opacity 500ms 500ms;
+  }
+
+  .user-summary_button-habit {
+    width: 50%;
     transition: height 500ms 0ms, opacity 500ms 500ms;
   }
 
@@ -1406,10 +1453,6 @@ i.icon.check:before {
 
   .user-panel__item {
     padding: 0 1.5rem;
-  }
-
-  .user-summary__cards-box {
-    /* margin: 0 0.5em; */
   }
 
   .card-deck {
@@ -1574,10 +1617,6 @@ i.icon.check:before {
   }
 
   /* USER SUMMARY */
-  .user-panel__box {
-    /* margin: 0 0.5em; */
-  }
-
   .user-panel__left {
     display: flex;
     flex-direction: column;
@@ -1629,16 +1668,13 @@ i.icon.check:before {
     font-size: 1.4rem;
   }
 
-  .user-summary_button-summary {
+  .user-summary_button-summary,
+  .user-summary_button-habit {
     width: 35%;
   }
 
   #add-habit__form {
     width: 83%;
-  }
-
-  .user-summary__cards-box {
-    /* margin: 0 0.5em; */
   }
 
   /* DAILY GOALS PAGE */
@@ -1726,11 +1762,8 @@ i.icon.check:before {
   }
 
   /* USER SUMMARY */
-  .user-panel__box {
-    /* margin: 0 0.5em; */
-  }
-
-  .user-summary_button-summary {
+  .user-summary_button-summary,
+  .user-summary_button-habit {
     width: 25%;
   }
 
@@ -1745,10 +1778,6 @@ i.icon.check:before {
 
   .user-summary__analysis {
     font-size: 1.3rem;
-  }
-
-  .user-summary__cards-box {
-    /* margin: 0 0.5em; */
   }
 
   /* DAILY GOALS PAGE */
@@ -1788,11 +1817,8 @@ i.icon.check:before {
 
 @media (max-width: 1200px) and (min-width: 992px) {
   /* USER SUMMARY */
-  .user-panel__box {
-    /* margin: 0 1.5em; */
-  }
-
-  .user-summary_button-summary {
+  .user-summary_button-summary,
+  .user-summary_button-habit {
     width: 20%;
   }
 

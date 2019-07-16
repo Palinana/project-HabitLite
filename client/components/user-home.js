@@ -37,6 +37,25 @@ class UserHome extends Component {
     this.setState({name: ''})
   }
 
+  updatedDaysAgo = (year, month, date) => {
+    if (month[0] === String(0)) month = month.slice(1)
+    if (date[0] === String(0)) date = date.slice(1)
+
+    // sample : Tue Jul 30 2019 00:00:00 GMT-0400 (Eastern Daylight Time)
+    let todayDate = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate()
+    )
+
+    if (month !== 0) month = month - 1
+    let lastUpdateDate = new Date(year, month, date)
+    // console.log('lastUpdateDate  - , ', lastUpdateDate)
+
+    let numberOfDays = Math.ceil((todayDate - lastUpdateDate) / 8.64e7) // calculating the difference
+    return numberOfDays
+  }
+
   render() {
     const personality = this.props.personality
     const habits = this.props.habits
@@ -155,12 +174,20 @@ class UserHome extends Component {
         </div>
 
         <div className="user-summary__cards-box">
-          {habits ? (
+          {habits.length ? (
             habits.map(habit => (
-              <UserSingleHabit habit={habit} userId={userId} key={habit.id} />
+              <UserSingleHabit
+                habit={habit}
+                userId={userId}
+                key={habit.id}
+                date={habit.updatedAt}
+                updatedDaysAgo={this.updatedDaysAgo}
+              />
             ))
           ) : (
-            <div>You don't have any habits</div>
+            <div className="user-summary__no-cards">
+              You don't have any habits
+            </div>
           )}
         </div>
       </div>
@@ -169,6 +196,7 @@ class UserHome extends Component {
 }
 
 const mapState = state => {
+  console.log('state ', state)
   return {
     email: state.user.email,
     habits: state.habits || '',

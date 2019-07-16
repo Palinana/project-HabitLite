@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Progress from '../../ui/progress'
 
-const UserSingleHabit = ({habit, userId}) => {
+const UserSingleHabit = ({habit, userId, date, updatedDaysAgo}) => {
   return (
     <div className="col-lg-4 col-md-4 mb-4 d-flex">
       <div className="card flex-fill">
@@ -28,7 +28,19 @@ const UserSingleHabit = ({habit, userId}) => {
           </div>
 
           <div className="card-footer">
-            <small className="text-muted">Last updated 3 mins ago</small>
+            <small className="text-muted">
+              {updatedDaysAgo(
+                date.slice(0, 4),
+                date.slice(5, 7),
+                date.slice(8, 10)
+              ) === 0
+                ? `Last updated today`
+                : `Last updated ${updatedDaysAgo(
+                    date.slice(0, 4),
+                    date.slice(5, 7),
+                    date.slice(8, 10)
+                  )} days ago`}
+            </small>
           </div>
         </Link>
       </div>

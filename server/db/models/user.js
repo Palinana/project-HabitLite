@@ -1,13 +1,9 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {levelForXP, LEVELS} = require('./level')
+const {levelForXP} = require('./level')
 const UserHabit = require('./userHabit')
 const Goal = require('./goal')
-const UserGoal = require('./userGoal')
-
-let globalGoalProgress = 0
-let checkedGoals = 0
 
 const stat = name => ({
   type: Sequelize.VIRTUAL,
@@ -33,7 +29,6 @@ const User = db.define('user', {
     defaultValue:
       'https://34yigttpdc638c2g11fbif92-wpengine.netdna-ssl.com/wp-content/uploads/2016/09/default-user-img.jpg'
   },
-  // progress: stat('progress'),
   level: stat('level'),
   xp: stat('xp'),
   hp: stat('hp'),
@@ -50,9 +45,6 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('salt')
     }
-  },
-  googleId: {
-    type: Sequelize.STRING
   }
 })
 
@@ -250,12 +242,25 @@ User.beforeBulkCreate(users => {
   users.forEach(setSaltAndPassword)
 })
 
+User.afterCreate('updateStats', user => {
+  return Object.assign(user, {
+    stats: {
+      xp: 0,
+      hp: 50,
+      level: 0
+    }
+  })
+})
+
 User.afterFind('updateStats', async user => {
   return Object.assign(user, {
     stats: {
-      level: (await user.getLevel()) < 0 ? 0 : await user.getLevel(),
       xp: !isNaN(await user.getXP()) ? await user.getXP() : 0,
-      hp: !isNaN(await user.getHP()) ? await user.getHP() : 50
+      hp: !isNaN(await user.getHP()) ? await user.getHP() : 50,
+      level:
+        (await user.getLevel()) <= 0 || (await user.getLevel()) === null
+          ? 0
+          : await user.getLevel()
     }
   })
 })

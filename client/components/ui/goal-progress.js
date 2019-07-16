@@ -8,12 +8,16 @@ const getData = percent => {
 }
 
 const GoalProgress = props => {
-  console.log('progress ', props.progress)
-
   return (
     <div className="chart">
       {props.levelledUp ? (
-        <div className="level-up">Level {props.level}!</div>
+        <div className="level-up__box">
+          <div className="level-up__wrapper">
+            <div className="level-up__title">Great job!</div>
+            <div className="level-up__subtitle">You've reached level</div>
+            <div className="level-up__level">{props.level}</div>
+          </div>
+        </div>
       ) : (
         <div />
       )}
