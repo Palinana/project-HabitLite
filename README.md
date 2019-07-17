@@ -13,9 +13,8 @@ Build with React, Redux, Express, Sequelize, Semantic UI, Victory.js, Recharts, 
 <br/>
 <br/>
 
-![image](https://user-images.githubusercontent.com/26104823/59723876-dc447600-91f5-11e9-8d1d-6e2dbd73681d.png)
-![image](https://user-images.githubusercontent.com/26104823/59723826-b4eda900-91f5-11e9-9b97-b5e3a1605faf.png)
-![image](https://user-images.githubusercontent.com/26104823/59810033-57c72580-92d1-11e9-9f68-6c76ed7cae60.png)
+![image](https://user-images.githubusercontent.com/26104823/61402899-157a0f80-a8a2-11e9-9d05-82047beba2fb.png)
+
 
 <br/>
 
