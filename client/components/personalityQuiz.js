@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import defaultquiz from '../../script/quiz'
 import {postPersonality} from '../store'
-import Navigation from './layout/landing/navigation'
 
 class PersonalityQuiz extends Component {
   state = {
@@ -12,7 +11,6 @@ class PersonalityQuiz extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    // console.log('paragraph', this.paragraph)
     const userId = this.props.match.params.id
     const insight = this.paragraph
     this.props.postNewPersonality(userId, insight)

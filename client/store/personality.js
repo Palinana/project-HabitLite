@@ -16,7 +16,6 @@ export const postPersonality = (userId, insight) => {
     return axios
       .put(`/api/personality/profile/${userId}`, {insight})
       .then(res => {
-        console.log('POSTED SUCCESSFULLY!', res)
         dispatch(addPersonality(res.data))
       })
       .catch(err => console.log(err))
