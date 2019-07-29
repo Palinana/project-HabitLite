@@ -41,7 +41,6 @@ class Routes extends Component {
               <Route exact path="/home/users/:id" component={UserHome} />
               <Route exact path="/quiz/users/:id" component={PersonalityQuiz} />
             </Switch>
-            {/* <Route exact component={NotFound} /> */}
           </div>
         )}
         <Route exact component={NotFound} />

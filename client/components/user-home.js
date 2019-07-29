@@ -196,7 +196,7 @@ class UserHome extends Component {
 }
 
 const mapState = state => {
-  console.log('state ', state)
+  // console.log('state ', state)
   return {
     email: state.user.email,
     habits: state.habits || '',

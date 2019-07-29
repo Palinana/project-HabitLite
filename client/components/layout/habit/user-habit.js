@@ -228,7 +228,6 @@ class UserHabit extends Component {
 }
 
 const mapState = state => {
-  // console.log('state ', state)
   return {
     goals: state.goals,
     userId: state.user.id,
