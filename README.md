@@ -9,9 +9,7 @@ Build with React, Redux, Express, Sequelize, Victory.js, Recharts, and IBM Watso
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
+
 
 ![image](https://user-images.githubusercontent.com/26104823/61402899-157a0f80-a8a2-11e9-9d05-82047beba2fb.png)
 
