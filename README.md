@@ -4,6 +4,7 @@
 ## 
 
 HabitLite is a PWA habit tracker app equipped with IBM Watson tone and personality analysis tools. HabitLite helps users to keep track of their goals and new habits by giving points and providing daily charts of their progress. The application also provides weekly challenges based on users personality and subtract the points from the total progress bar if any of challenges weren't finished.
+##
 
 Build with React, Redux, Express, Sequelize, Victory.js, Recharts, and IBM Watson API.
 <br/>
